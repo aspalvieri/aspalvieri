@@ -11,9 +11,12 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-// Routes
-//const routes = require("./routes.js");
-//app.use("/api", routes);
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, "client/build")));
+
+// API Routes
+const routes = require("./routes.js");
+app.use("/api", routes);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
