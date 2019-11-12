@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Routes
-const routes = require("./routes.js");
-app.use("/api", routes);
+//const routes = require("./routes.js");
+//app.use("/api", routes);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
