@@ -19,7 +19,7 @@ function MainNav() {
                     <Link className="nav-link" to="/">Home</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/api/test/random_array">Random Array API</Link>
+                    <Link className="nav-link" to={process.env.PUBLIC_URL+"/api/test/random_array"}>Random Array API</Link>
                 </li>
             </ul>
         </div>
