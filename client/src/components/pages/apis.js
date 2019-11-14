@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-function APIList() {
+function APIs() {
     
     useEffect(() => {
         //Messy way to hide hamburger menu after navigation
@@ -15,9 +15,8 @@ function APIList() {
             <p>
                 <a target="_blank" rel="noopener noreferrer" href={process.env.PUBLIC_URL+"/api/test/random_array"}>Random Array API</a>
             </p>
-            
         </div>
     );
 }
 
-export default APIList;
+export default APIs;

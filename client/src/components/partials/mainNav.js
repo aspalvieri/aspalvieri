@@ -16,7 +16,7 @@ function MainNav() {
                         <Link className="nav-link" to="/">Home</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/apilist">API List</Link>
+                        <Link className="nav-link" to="/apis">APIs</Link>
                     </li>
                 </ul>
             </div>
