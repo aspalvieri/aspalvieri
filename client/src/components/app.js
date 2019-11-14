@@ -1,14 +1,12 @@
 import React from "react";
 import Routes from "./routes";
-//import MainNav from "./partials/main_nav";
+import MainNav from "./partials/mainNav";
 
 export default function App() {
   return (
     <div className="App">
-        <Routes />
+      <Routes />
+      <MainNav />
     </div>
   );
 }
-/*
-      <MainNav />
-      */
