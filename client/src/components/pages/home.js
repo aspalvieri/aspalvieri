@@ -13,6 +13,8 @@ function Home() {
     //Passing empty array as 2nd argument causes this to run only once on page load
     useEffect(() => {
         fetchRandomArray();
+        //Messy way to hide hamburger menu after navigation
+        document.querySelector("#navbarSupportedContent").classList.remove("show");
     }, []);
 
     return(
