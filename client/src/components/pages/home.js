@@ -36,7 +36,7 @@ function Home() {
                     <tbody>
                         {array.map((arr, i) => (
                             <tr key={i}>
-                                <td><span className="gray">{i+1}:</span> {arr}</td>
+                                <td><span style={{color: "rgb(175,175,175)"}}>{i+1}:</span> {arr}</td>
                             </tr>
                         ))}
                     </tbody>
