@@ -22,24 +22,26 @@ function Home() {
             <header>
                 <h1 style={{textAlign: "center"}}>Home Page</h1>
             </header>
-            <p>
-                <button onClick={() => fetchRandomArray()}>Fetch</button> <br/>
-                Random Array:
-            </p>
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Array (size of {array.length})</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {array.map((arr, i) => (
-                        <tr key={i}>
-                            <td><span className="gray">{i+1}:</span> {arr}</td>
+            <section>
+                <p>
+                    <button onClick={() => fetchRandomArray()}>Fetch</button> <br/>
+                    Random Array:
+                </p>
+                <table className="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Array (size of {array.length})</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {array.map((arr, i) => (
+                            <tr key={i}>
+                                <td><span className="gray">{i+1}:</span> {arr}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </section>
         </div>
     );
 }
