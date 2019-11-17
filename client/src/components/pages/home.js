@@ -16,7 +16,7 @@ function Home() {
                 return newState;
             });
             highlight.style.opacity = 1;
-        }, 300);
+        }, 200);
     }
     
     //Passing empty array as 2nd argument causes this to run only once on page load
