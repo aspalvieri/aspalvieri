@@ -17,12 +17,12 @@ function Home() {
     return(
         <>
             <section className="home-img-1">
-                <h2 className="centered">Programmer With <HashLink to="/#passion" className="highlight">Passion</HashLink></h2>
+                <h2 className="centered">Programmer With <HashLink to="/#dedication" className="highlight">Dedication</HashLink></h2>
             </section>
-            <section id="passion">
+            <section id="dedication">
                 <h2>About Me</h2>
                 <p>
-                    My name is Alex Spalvieri and I've been programming since before I started high-school. 
+                    My name is Alex Spalvieri and I've been programming for most of my life. 
                     Starting with video game programming, I went from text adventures to 2D and 3D game development. 
                     Later, I went onto front-end and back-end web development. My skills and passion are with software 
                     and back-end programming.

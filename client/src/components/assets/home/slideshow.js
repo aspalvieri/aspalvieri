@@ -71,35 +71,3 @@ function changeSlide(slide, index) {
         }
     }
 }
-
-/*
-
-function buildSlideshow(id) {
-    var sl = [];
-    //Loops through each div inside the ID and store into array
-    $("#"+id+" div").each(function(){
-        sl.push($(this));
-    });
-    //Create new Slide class with the ID and slides
-    slideshows.push(new Slide(id, sl));
-}
-
-//Function for previous/next slide buttons
-function nextSlide(slide, inc) {
-    //Sets all slides to display none
-    for (var i = 0; i < slide.slides.length; i++) {
-        slide.slides[i].css({"display":"none"});
-    }
-    //increase index
-    slide.ind += inc;
-    if (slide.ind >= slide.slides.length) {
-        slide.ind = 0;
-    }
-    if (slide.ind < 0) {
-        slide.ind = slide.slides.length - 1;
-    }
-    //set indexed slide to display inline
-    slide.slides[slide.ind].css({"display":"inline"});
-    slide.updateText();
-}
-*/
