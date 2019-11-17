@@ -24,9 +24,9 @@ function Home() {
             </section>
             <hr/>
             <section>
-                <h2>...About Me...</h2>
+                <h2>About Me</h2>
                 <p>
-                    Hello, my name is Alex Spalvieri and I've been programming since before I started highschool. 
+                    Hello, my name is Alex Spalvieri and I've been programming since before I started high-school. 
                     Starting with video game programming, I went from text adventures to 2D and 3D game development. 
                     Later, I went onto front-end and back-end web development. My skills and passion are with software 
                     and back-end programming.
@@ -35,7 +35,7 @@ function Home() {
             <hr/>
             {/* id purely for linking from 'Passion' text... */}
             <section>
-                <h2 id="passion">...Hobby Projects...</h2>
+                <h2 id="passion">Hobby Projects</h2>
                 <p>
                     Snippets from various games I've worked on for fun.
                 </p>
