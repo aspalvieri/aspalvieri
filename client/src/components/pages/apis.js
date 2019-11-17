@@ -13,14 +13,14 @@ function APIs() {
     useEffect(() => {
         //Messy way to hide hamburger menu after navigation
         document.querySelector("#navbarSupportedContent").classList.remove("show");
+        window.scrollTo(0, 0); //Ugly fix to push screen to top on new page
     }, []);
 
     return(
-        <div className="container">
+        <>
             <header>
                 <h1 style={{textAlign: "center"}}>List of APIs</h1>
             </header>
-            <hr/>
             <section>
                 <p>
                     <a target="_blank" rel="noopener noreferrer" href={process.env.PUBLIC_URL+"/api/test/random_array"}>Random Array API</a><br/>
@@ -47,7 +47,7 @@ function APIs() {
                     </tbody>
                 </table>
             </section>
-        </div>
+        </>
     );
 }
 

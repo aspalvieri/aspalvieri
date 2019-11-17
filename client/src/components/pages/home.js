@@ -8,38 +8,32 @@ function Home() {
     useEffect(() => {
         //Messy way to hide hamburger menu after navigation
         document.querySelector("#navbarSupportedContent").classList.remove("show");
+        window.scrollTo(0, 0); //Ugly fix to push screen to top on new page
         //Creates the slideshows displayed under ...Hobby Projects...
         new SlideshowModule.Slideshow();
     }, []);
 
     //<h2>Programmer With <Link to="/" className="highlight">Passion</Link></h2>
     return(
-        <div className="container">
-            <header>
-                <h1>Alex Spalvieri</h1>
-            </header>
-            <hr/>
+        <>
             <section className="home-img-1">
                 <h2 className="centered">Programmer With <HashLink to="/#passion" className="highlight">Passion</HashLink></h2>
             </section>
-            <hr/>
-            <section>
+            <section id="passion">
                 <h2>About Me</h2>
                 <p>
-                    Hello, my name is Alex Spalvieri and I've been programming since before I started high-school. 
+                    My name is Alex Spalvieri and I've been programming since before I started high-school. 
                     Starting with video game programming, I went from text adventures to 2D and 3D game development. 
                     Later, I went onto front-end and back-end web development. My skills and passion are with software 
                     and back-end programming.
                 </p>
             </section>
-            <hr/>
-            {/* id purely for linking from 'Passion' text... */}
             <section>
-                <h2 id="passion">Hobby Projects</h2>
+                <h2>Hobby Projects</h2>
                 <p>
-                    Snippets from various games I've worked on for fun.
+                    Snippets from various games I've developed in my spare time.
                 </p>
-                {/* Slideshow styles stored under ../assets/home/styles.scss */}
+                {/* Slideshow styles stored under home_styles.scss */}
                 <div className="slideshow" id="forgottenSpace">
                     <div className="slide"><img src="" alt=""/></div>
                     <div className="slide"><img src="" alt=""/></div>
@@ -50,7 +44,7 @@ function Home() {
                 <span className="close">&times;</span>
                 <img src="" className="modal-content" alt="" />
             </div>
-        </div>
+        </>
     );
 }
 

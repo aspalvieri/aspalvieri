@@ -1,5 +1,6 @@
 $bodycolor: rgba(255, 255, 255, 0.75);
-$navcolor: rgb(192, 192, 192);
+$navcolor: rgba(192, 192, 192, 0.7);
+$navcolorsolid: rgb(192, 192, 192);
 $footcolor: rgb(128, 128, 128);
 
 .App {
@@ -12,19 +13,8 @@ body {
 }
 nav {
     margin: 0 auto;
-    min-height: 60px;
+    min-height: 80px;
     border-bottom: 2px solid black;
-}
-.navbar-bg-fix {
-    min-height: 60px;
-    border-bottom: 2px solid black;
-    margin: 0;
-    width: 100%;
-}
-.container {
-    flex: 1;
-    padding-top: 65px;
-    padding-bottom: 10px;
 }
 h1, h2 {
     text-align: center;
@@ -51,44 +41,43 @@ h1 {
         background-size: cover;
         opacity: 0.6;
         width: 100%;
-        height: 440px;
+        height: 100vh;
     }
 }
 
 .centered {
     position: absolute;
-    top: 50%;
+    top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    font-size: 40px;
+    font-size: 8vw;
     //color: rgb(12, 83, 3);
-    text-shadow:
-        -2px -2px 0 #fff,
-        0   -2px 0 #fff,
-        2px -2px 0 #fff,
-        2px  0   0 #fff,
-        2px  2px 0 #fff,
-        0    2px 0 #fff,
-        -2px  2px 0 #fff,
-        -2px  0   0 #fff;
+    text-shadow: -2px -2px 0 #fff, 0   -2px 0 #fff, 2px -2px 0 #fff, 2px  0   0 #fff, 2px  2px 0 #fff, 0    2px 0 #fff, -2px  2px 0 #fff, -2px  0   0 #fff;
 }
-
+header {
+    padding-top: 120px;
+    padding-bottom: 20px;
+}
 section {
-    padding: 15px;
-
+    padding: 100px 0;
+    &:nth-child(2n+1) {
+        background-color: rgb(240, 240, 240);
+    }
+    p, >div {
+        margin: 0 auto;
+        width: 65%;
+    }
     p {
         text-align: center;
-        width: 70%;
         margin: 0 auto;
         font-size: 1.2rem;
     }
+    &:first-of-type {
+        padding: 0;
+    }
 }
 
-header {
-    //color: rgb(12, 83, 3);
-    padding: 7px 0 0 0;
-}
 hr {
     border-top: 2px solid black;
 }
@@ -99,6 +88,7 @@ footer {
     border-top: 2px solid black;
     text-align: center;
     padding: 15px;
+    margin-top: auto;
 }
 
 .nav-logo {
@@ -112,6 +102,21 @@ footer {
 .navbar {
     background-color: $navcolor !important;
     font-weight: bold;
+    font-size: 1.25rem;
+    padding: 0.5rem 1.5rem;
+    .nav-item {
+        padding: 0.5rem 0;
+        .nav-link, .fa {
+            color: rgb(0, 0, 0);
+            &:hover {
+                color: rgba(0,0,0,0.7);
+            }
+        }
+    }
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
 }
 
 #navbarBlocker {
@@ -130,52 +135,6 @@ footer {
     }
 }
 
-//Bootstrap media queries
-@media (min-width: 576px) {
-    nav {
-        max-width: 540px;
-    }
-    .centered {
-        font-size: 50px;
-    }
-    .home-img-1::before {
-        height: 480px;
-    }
-}
-@media (min-width: 768px) {
-    nav {
-        max-width: 720px;
-    }
-    .centered {
-        font-size: 68px;
-    }
-    .home-img-1::before {
-        height: 520px;
-    }
-}
-@media (min-width: 992px) {
-    nav {
-        max-width: 960px;
-    }
-    .centered {
-        font-size: 82px;
-    }
-    .home-img-1::before {
-        height: 560px;
-    }
-}
-@media (min-width: 1200px) {
-    nav {
-        max-width: 1140px;
-    }
-    .centered {
-        font-size: 100px;
-    }
-    .home-img-1::before {
-        height: 600px;
-    }
-}
-
 .button-active {
     background-color: gray;
 }
@@ -184,7 +143,7 @@ button {
     border: none;
     margin: 0;
     text-decoration: none;
-    background-color: lightgray;
+    background-color: rgb(192, 192, 192);
     cursor: pointer;
     text-align: center;
     transition: background-color 250ms ease;
@@ -197,10 +156,10 @@ button {
         outline: none;
     }
 }
-
 .fa {
     float: right;
-    margin-top: 2px;
+    margin-top: 5px;
+    margin-left: 5px;
     font-size: 36px;
     width: 50px;
     text-align: center;
@@ -217,8 +176,12 @@ button {
         min-height: 55px;
         max-width: 100%;
     }
-    .navbar-bg-fix {
-        display: none;
+    .navbar {
+        background-color: $navcolorsolid !important;
+        .nav-item {
+            font-size: 1rem;
+            padding: 0;
+        }
     }
     .container {
         padding-top: 60px;
@@ -227,13 +190,28 @@ button {
     .navbar-brand {
         margin-right: 0;
     }
+    .centered {
+        font-size: 12vw;
+    }
 
     .navbar-toggler {
         border-color: rgba(0, 0, 0, 1) !important;
         outline: none !important;
+        &:focus {
+            background-color: rgba(0,0,0,0.1);
+        }
     }
-    section p {
-        width: 100%;
+    header {
+        padding-top: 100px;
+    }
+    section {
+        padding: 75px 0;
+        p, >div {
+            width: 90%;
+        }
+        &:first-of-type {
+            padding: 0;
+        }
     }
     .mobile-icons {
         margin: 12px auto 0 auto;
@@ -256,7 +234,6 @@ button {
             &:nth-child(2n+1) {
                 background-color: rgb(167, 167, 167);
             }
-
             &:nth-child(2n) {
                 background-color: rgb(139, 139, 139);
             }

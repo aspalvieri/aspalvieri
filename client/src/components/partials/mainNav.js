@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 function MainNav() {
     return (
         <>
-        <div className="navbar fixed-top navbar-expand-lg navbar-bg-fix"></div>
         <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
             <Link className="nav-link nav-logo" to="/"></Link>
             <Link className="navbar-brand" to="/">Alex Spalvieri</Link>
