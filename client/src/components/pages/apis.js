@@ -12,6 +12,7 @@ function APIs() {
             <header>
                 <h1 style={{textAlign: "center"}}>List of APIs</h1>
             </header>
+            <hr/>
             <section>
                 <p>
                     <a target="_blank" rel="noopener noreferrer" href={process.env.PUBLIC_URL+"/api/test/random_array"}>Random Array API</a><br/>

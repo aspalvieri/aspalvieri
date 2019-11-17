@@ -1,5 +1,6 @@
 $bodycolor: rgba(255, 255, 255, 0.75);
 $navcolor: rgb(192, 192, 192);
+$footcolor: rgb(128, 128, 128);
 
 .App {
     display: flex;
@@ -11,31 +12,34 @@ body {
 }
 nav {
     margin: 0 auto;
-    min-height: 65px;
+    min-height: 60px;
     border-bottom: 2px solid black;
 }
 .navbar-bg-fix {
-    min-height: 65px;
+    min-height: 60px;
     border-bottom: 2px solid black;
     margin: 0;
     width: 100%;
 }
 .container {
     flex: 1;
-    padding-top: 70px;
-    padding-bottom: 15px;
+    padding-top: 65px;
+    padding-bottom: 10px;
 }
 
 section {
     padding: 15px;
 }
 header {
-    color: rgb(35, 80, 122);
-    text-shadow: 0px 0px 5px rgb(255, 255, 255);
-    padding: 8px 0 5px 0;
+    color: rgb(12, 83, 3);
+    padding: 4px 0 0 0;
+}
+hr {
+    border-top: 2px solid black;
 }
 footer {
-    background-color: $navcolor;
+    background-color: $footcolor;
+    color: white;
     width: 100%;
     border-top: 2px solid black;
     text-align: center;
@@ -43,9 +47,11 @@ footer {
 }
 
 .nav-logo {
-    background-image: url("assets/icon.ico");
-    background-size: 40px 40px;
-    margin-right: 15px;
+    background-image: url("assets/icon32.ico");
+    background-size: 32px 32px;
+    margin-right: 12px;
+    width: 32px;
+    height: 32px;
 }
 
 .navbar {
@@ -72,19 +78,16 @@ footer {
         max-width: 540px;
     }
 }
-
 @media (min-width: 768px) {
     nav {
         max-width: 720px;
     }
 }
-
 @media (min-width: 992px) {
     nav {
         max-width: 960px;
     }
 }
-
 @media (min-width: 1200px) {
     nav {
         max-width: 1140px;
@@ -109,6 +112,9 @@ footer {
 
     .navbar-toggler {
         border-color: rgba(0, 0, 0, 1) !important;
+    }
+    header {
+        padding: 7px 0 0 0;
     }
 
     #navbarSupportedContent {

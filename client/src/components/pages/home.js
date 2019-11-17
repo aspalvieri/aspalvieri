@@ -22,6 +22,7 @@ function Home() {
             <header>
                 <h1 style={{textAlign: "center"}}>Home Page</h1>
             </header>
+            <hr/>
             <section>
                 <p>
                     <button onClick={() => fetchRandomArray()}>Fetch</button> <br/>
