@@ -25,6 +25,7 @@ h1 {
 }
 .highlight {
     color: rgb(185, 102, 6);
+    transition: opacity 0.3s ease;
 }
 .highlight:hover {
     color: rgb(102, 57, 6);
