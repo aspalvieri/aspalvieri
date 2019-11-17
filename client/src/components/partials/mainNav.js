@@ -20,6 +20,10 @@ function MainNav() {
                     <li className="nav-item">
                         <Link className="nav-link" to="/apis">APIs</Link>
                     </li>
+                    <li className="nav-item mobile-icons">
+                        <a target="_blank" href="https://www.linkedin.com/in/alex-spalvieri/" className="fa fa-linkedin" rel="noopener noreferrer"> </a>
+                        <a target="_blank" href="https://github.com/aspalvieri" className="fa fa-github" rel="noopener noreferrer"> </a>
+                    </li>
                 </ul>
             </div>
         </nav>
