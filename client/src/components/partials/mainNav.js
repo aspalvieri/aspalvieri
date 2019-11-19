@@ -17,6 +17,9 @@ function MainNav() {
                         <Link className="nav-link" to="/">Home</Link>
                     </li>
                     <li className="nav-item">
+                        <Link className="nav-link" to="/projects">Projects</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link className="nav-link" to="/apis">APIs</Link>
                     </li>
                     <li className="nav-item mobile-icons">
