@@ -180,6 +180,9 @@ button {
         min-height: 55px;
         max-width: 100%;
     }
+    .nav-logo {
+        margin-right: 0;
+    }
     .navbar {
         background-color: $navcolorsolid !important;
         .nav-item {
