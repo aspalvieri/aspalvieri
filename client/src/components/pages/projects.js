@@ -7,7 +7,7 @@ function Projects() {
     }, []);
 
     return(
-        <div id="Projects">
+        <div className="Projects">
             <header>
                 <h1 style={{textAlign: "center"}}>Projects</h1>
             </header>

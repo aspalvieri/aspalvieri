@@ -16,7 +16,7 @@ function APIs() {
     }, []);
 
     return(
-        <div id="APIs">
+        <div className="APIs">
             <header>
                 <h1 style={{textAlign: "center"}}>List of APIs</h1>
             </header>

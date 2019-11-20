@@ -24,7 +24,7 @@ function Home() {
     //Passing empty array as 2nd argument causes this to run only once on page load
     useEffect(() => {
         document.querySelector("#navbarSupportedContent").classList.remove("show");
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 0); //Ugly fix to push screen to top on new page
         new SlideshowModule();
         let highlight = document.querySelector(".highlight");
         let intervalID = setInterval(() => changeText(highlight), 5000);
@@ -32,10 +32,9 @@ function Home() {
             clearInterval(intervalID);
         };
     }, []);
-
-    //<h2>Programmer With <Link to="/" className="highlight">Passion</Link></h2>
+    
     return(
-        <div id="Home">
+        <div className="Home">
             <section className="home-img-1">
                 <h2 className="centered">Programmer With <HashLink to="/#aboutme" className="highlight">{changingText.text[changingText.index]}</HashLink></h2>
             </section>
