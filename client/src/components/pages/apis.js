@@ -16,7 +16,7 @@ function APIs() {
     }, []);
 
     return(
-        <>
+        <div id="APIs">
             <header>
                 <h1 style={{textAlign: "center"}}>List of APIs</h1>
             </header>
@@ -46,7 +46,7 @@ function APIs() {
                     </tbody>
                 </table>
             </section>
-        </>
+        </div>
     );
 }
 

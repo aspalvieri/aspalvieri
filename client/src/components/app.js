@@ -3,7 +3,6 @@ import Routes from "./routes";
 import MainNav from "./partials/mainNav";
 import Footer from "./partials/footer";
 import "./styles.scss";
-import "./home_styles.scss";
 
 export default function App() {
   return (

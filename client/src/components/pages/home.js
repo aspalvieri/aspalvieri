@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 //import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
-import * as SlideshowModule from "../assets/home/slideshow";
+//By using export default, i'm able to name the variable anything and it'll
+//be equal to the default export, which in this case was the class "Slideshow"
+import SlideshowModule from "../assets/home/slideshow";
 
 function Home() {
     const [changingText, setChangingText] = useState({text: ["Dedication","Passion","Devotion","Ambition"], index: 0});
@@ -23,7 +25,7 @@ function Home() {
     useEffect(() => {
         document.querySelector("#navbarSupportedContent").classList.remove("show");
         window.scrollTo(0, 0);
-        new SlideshowModule.Slideshow();
+        new SlideshowModule();
         let highlight = document.querySelector(".highlight");
         let intervalID = setInterval(() => changeText(highlight), 5000);
         return () => {
@@ -33,7 +35,7 @@ function Home() {
 
     //<h2>Programmer With <Link to="/" className="highlight">Passion</Link></h2>
     return(
-        <>
+        <div id="Home">
             <section className="home-img-1">
                 <h2 className="centered">Programmer With <HashLink to="/#aboutme" className="highlight">{changingText.text[changingText.index]}</HashLink></h2>
             </section>
@@ -51,7 +53,6 @@ function Home() {
                 <p>
                     Snippets from various games I've developed in my spare time.
                 </p>
-                {/* Slideshow styles stored under home_styles.scss */}
                 <div className="slideshow" id="forgottenSpace">
                     <div className="slide"><img src="" alt=""/></div>
                     <div className="slide"><img src="" alt=""/></div>
@@ -62,7 +63,7 @@ function Home() {
                 <span className="close">&times;</span>
                 <img src="" className="modal-content" alt="" />
             </div>
-        </>
+        </div>
     );
 }
 

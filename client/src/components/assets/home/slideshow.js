@@ -1,6 +1,6 @@
 //The entire purpose of this javascript file is to automatically create slideshows through very minimal HTML
 
-export class Slideshow {
+export default class Slideshow {
     constructor() {
         this.modal = document.querySelector("#modal");
         this.slideshows = [];

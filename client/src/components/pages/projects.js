@@ -7,7 +7,7 @@ function Projects() {
     }, []);
 
     return(
-        <>
+        <div id="Projects">
             <header>
                 <h1 style={{textAlign: "center"}}>Projects</h1>
             </header>
@@ -16,7 +16,7 @@ function Projects() {
                     WIP . . .
                 </p>
             </section>
-        </>
+        </div>
     );
 }
 
