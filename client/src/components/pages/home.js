@@ -58,6 +58,12 @@ function Home() {
                     <div className="slide"><img src="" alt=""/></div>
                 </div>
             </section>
+            <section>
+                <h2>Contact Me</h2>
+                <p>
+                    Contact information to go here . . .
+                </p>
+            </section>
             <div id="modal">
                 <span className="close">&times;</span>
                 <img src="" className="modal-content" alt="" />

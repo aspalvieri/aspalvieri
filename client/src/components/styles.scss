@@ -25,12 +25,12 @@ $footcolor: rgb(128, 128, 128);
         padding: 12px 0;
     }
     .highlight {
-        color: rgb(185, 102, 6);
+        text-decoration: underline;
         transition: opacity 0.2s ease;
-    }
-    .highlight:hover {
-        color: rgb(102, 57, 6);
-        text-decoration: none;
+        color: rgb(185, 102, 6);
+        &:hover {
+            color: rgb(102, 57, 6);
+        }
     }
     .home-img-1 {
         position: relative;
