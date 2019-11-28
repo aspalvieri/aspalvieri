@@ -95,7 +95,7 @@ $footcolor: rgb(128, 128, 128);
     }
 
     .nav-logo {
-        background-image: url("assets/icon.svg");
+        background-image: url("assets/icon.ico");
         background-size: 32px 32px;
         margin-top: 2px;
         margin-right: 16px;
@@ -245,7 +245,7 @@ $footcolor: rgb(128, 128, 128);
             transition: opacity 150ms ease;
             &:hover {
                 opacity: 0.7;
-                cursor: pointer;
+                cursor: zoom-in;
             }
         }
     }
