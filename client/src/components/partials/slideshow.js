@@ -1,7 +1,7 @@
 //The entire purpose of this javascript file is to automatically create slideshows through very minimal HTML
 
 export default class Slideshow {
-    constructor() {
+    constructor(folderPath) {
         this.modal = document.querySelector("#modal");
         this.slideshows = [];
         document.querySelectorAll(".slideshow").forEach((slideshow) => {
@@ -10,7 +10,7 @@ export default class Slideshow {
         this.slideshows.forEach((slideshow) => {
             slideshow.slides.forEach((slide, i) => {
                 let img = slide.querySelector("img");
-                img.src = `assets/home/${slideshow.self.id}/${i+1}.png`;
+                img.src = `assets/${folderPath}/${slideshow.self.id}/${i+1}.png`;
                 let elem = document.createElement("button");
                 elem.classList = "slidebutton";
                 elem.textContent = " ";

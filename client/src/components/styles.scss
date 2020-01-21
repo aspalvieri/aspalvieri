@@ -38,7 +38,7 @@ $footcolor: rgb(128, 128, 128);
             content: ' ';
             filter: blur(2px);
             display: block;
-            background-image: url("assets/home/bg1.png");
+            background-image: url("/assets/home/bg1.png");
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -59,8 +59,7 @@ $footcolor: rgb(128, 128, 128);
         text-shadow: -2px -2px 0 #fff, 0   -2px 0 #fff, 2px -2px 0 #fff, 2px  0   0 #fff, 2px  2px 0 #fff, 0    2px 0 #fff, -2px  2px 0 #fff, -2px  0   0 #fff;
     }
     header {
-        padding-top: 120px;
-        padding-bottom: 20px;
+        padding-top: 100px;
     }
     section {
         padding: 100px 0;
@@ -95,7 +94,7 @@ $footcolor: rgb(128, 128, 128);
     }
 
     .nav-logo {
-        background-image: url("assets/icon.ico");
+        background-image: url("/favicon.ico");
         background-size: 32px 32px;
         margin-top: 2px;
         margin-right: 16px;
@@ -192,7 +191,7 @@ $footcolor: rgb(128, 128, 128);
             }
         }
         header {
-            padding-top: 100px;
+            padding-top: 80px;
         }
         section {
             padding: 75px 0;
@@ -231,11 +230,9 @@ $footcolor: rgb(128, 128, 128);
     }
 }
 
-.Home {
-    .slideshow {
-        text-align: center;
-    }
-    
+.slideshow {
+    text-align: center;
+
     .slide {
         display: none;
         img {
@@ -279,27 +276,37 @@ $footcolor: rgb(128, 128, 128);
             outline: none;
         }
     }
-    
-    #modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        padding-top: 120px;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-        z-index: 1234; //Ensure it's above the nav, because bootstrap gives it 1030 index...
-        transition: opacity 500ms ease;
+
+    @media screen and (max-width: 991px) {
+        .slide img {
+            width: 100%;
+            margin: 25px 0;
+        }
     }
+}
+    
+#modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    z-index: 1234; //Ensure it's above the nav, because bootstrap gives it 1030 index...
+    transition: opacity 500ms ease;
     
     .modal-content {
         display: block;
         margin: auto;
         width: unset;
-        max-width: 100%;
+        max-width: 90%;
+        max-height: 90%;
         height: auto;
+        cursor: zoom-out;
+        top: 50%;
+        transform: translateY(-50%);
       }
     
     .close {
@@ -317,12 +324,7 @@ $footcolor: rgb(128, 128, 128);
         }
     }
     
-    
     @media screen and (max-width: 991px) {
-        .slide img {
-            width: 100%;
-            margin: 25px 0;
-        }
         #modal {
             padding-top: 80px;
         }
@@ -330,5 +332,5 @@ $footcolor: rgb(128, 128, 128);
             font-size: 60px;
             right: 25px;
         }
-    }    
+    }
 }

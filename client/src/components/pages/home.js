@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { HashLink } from 'react-router-hash-link';
 //By using export default, i'm able to name the variable anything and it'll
 //be equal to the default export, which in this case was the class "Slideshow"
-import SlideshowModule from "../assets/home/slideshow";
+import SlideshowModule from "../partials/slideshow";
 
 function Home() {
     const [changingText, setChangingText] = useState({text: ["Dedication","Passion","Devotion","Ambition"], index: 0});
@@ -25,7 +25,7 @@ function Home() {
     useEffect(() => {
         document.querySelector("#navbarSupportedContent").classList.remove("show");
         window.scrollTo(0, 0); //Ugly fix to push screen to top on new page
-        new SlideshowModule();
+        new SlideshowModule("home");
         let highlight = document.querySelector(".highlight");
         let intervalID = setInterval(() => changeText(highlight), 5000);
         return () => {
@@ -65,8 +65,8 @@ function Home() {
                 </p>
             </section>
             <div id="modal">
-                <span className="close">&times;</span>
                 <img src="" className="modal-content" alt="" />
+                <span className="close">&times;</span>
             </div>
         </div>
     );
