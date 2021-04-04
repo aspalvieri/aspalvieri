@@ -3,7 +3,7 @@ import React from "react";
 function MainNav() {
     return (
         <footer>
-            &copy; 2019 - Alex Spalvieri
+            &copy; 2021 - Alex Spalvieri
         </footer>
     );
 }

@@ -61,7 +61,9 @@ function Home() {
             <section>
                 <h2>Contact Me</h2>
                 <p>
-                    Contact information to go here . . .
+                    My contact information is available at my LinkedIn:
+                    <br/>
+                    <a href="https://www.linkedin.com/in/alex-spalvieri/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/alex-spalvieri/</a>
                 </p>
             </section>
             <div id="modal">
