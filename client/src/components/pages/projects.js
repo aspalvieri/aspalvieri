@@ -8,15 +8,17 @@ class Projects extends Component {
 
 	render() {
 		return(
-			<div className="Projects">
-					<header>
-							<h1 style={{textAlign: "center"}}>Projects</h1>
-					</header>
-					<section>
-							<p style={{textAlign: "left"}}>
-									WIP . . .
-							</p>
-					</section>
+			<div>
+				<header>
+					<h1 style={{textAlign: "center"}}>Projects</h1>
+				</header>
+				<section>
+					<div><div></div></div>
+					<div></div>
+					<p style={{textAlign: "left"}}>
+						WIP . . .
+					</p>
+				</section>
 			</div>
 		);
 	}

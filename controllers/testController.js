@@ -5,8 +5,12 @@ function getRndInteger(min, max) {
 exports.randomArray = (req, res) => {
 	let min_arr = parseInt(req.query.min_arr) || 5;
 	let max_arr = parseInt(req.query.max_arr) || 10;
+	if (min_arr > max_arr)
+		max_arr = min_arr;
 	let min_val = parseInt(req.query.min_val) || 1;
 	let max_val = parseInt(req.query.max_val) || 100;
+	if (min_val > max_val)
+		max_val = min_val;
 	let arr = [];
 	let max = getRndInteger(min_arr, max_arr);
 	for (let i = 0; i < max; i++) {

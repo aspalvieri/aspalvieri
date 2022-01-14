@@ -28,7 +28,7 @@ class Home extends Component {
 		clearInterval(this.state.textIntervalID);
 	}
 	
-	changeText(highlight) {
+	changeText = (highlight) => {
 		highlight.style.opacity = 0;
 		setTimeout(() => {
 			let id = this.state.textID;
@@ -40,7 +40,7 @@ class Home extends Component {
 	
 	render() {
 		return(
-			<div className="Home">
+			<div>
 				<section className="home-img-1">
 					<h2 className="centered">Programmer With <HashLink to="/#aboutme" className="highlight">{this.state.changingText[this.state.textID]}</HashLink></h2>
 				</section>

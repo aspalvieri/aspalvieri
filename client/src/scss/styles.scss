@@ -195,7 +195,7 @@ $footcolor: rgb(128, 128, 128);
 		}
 		section {
 			padding: 75px 0;
-			p, >div {
+			p, > div {
 				width: 90%;
 			}
 			&:first-of-type {
@@ -236,7 +236,7 @@ $footcolor: rgb(128, 128, 128);
 	.slide {
 		display: none;
 		img {
-			width: 75%;
+			width: 70%;
 			margin: 25px;
 			border: 3px solid black;
 			transition: opacity 150ms ease;
@@ -252,6 +252,21 @@ $footcolor: rgb(128, 128, 128);
 		height: 40px;
 		border-radius: 20px;
 		margin: 0 15px;
+	}
+
+	.slidebutton-nav {
+		color: black;
+		font-size: large;
+		border-radius: 10px;
+		width: 45px;
+		height: 35px;
+		background-color: lightgray;
+		&:hover {
+			background-color: silver;
+		}
+		@media screen and (max-width: 575px) {
+			display: none;
+		}
 	}
 
 	.button-active {

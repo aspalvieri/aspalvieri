@@ -7,7 +7,7 @@ class Navigation extends Component {
 			<nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
 				<Link className="nav-link nav-logo" to="/"></Link>
 				<Link className="navbar-brand" to="/">Alex Spalvieri</Link>
-				<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
 					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span className="navbar-toggler-icon" />
 				</button>
