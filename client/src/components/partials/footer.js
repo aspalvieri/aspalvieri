@@ -1,11 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
 
-function MainNav() {
-    return (
-        <footer>
-            &copy; 2021 - Alex Spalvieri
-        </footer>
-    );
+class Footer extends Component {
+	render() {
+		return (
+			<footer>
+				&copy; 2021 - Alex Spalvieri
+			</footer>
+		);
+	}
 }
 
-export default MainNav;
+export default Footer;

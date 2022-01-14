@@ -1,8 +1,8 @@
 // Our router module
-const router = require('express').Router();
+const router = require("express").Router();
 
 // Our controller
-const TestController = require('../controllers/testController.js');
+const TestController = require("../controllers/testController.js");
 
 // Our routes
 router.get("/random_array", TestController.randomArray);
