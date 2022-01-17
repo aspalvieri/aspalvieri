@@ -11,7 +11,7 @@ import CityDefense from "./components/projects/city_defense";
 import EquationGame from "./components/projects/equation_game";
 import APIs from "./components/pages/apis";
 
-import "./scss/styles.scss";
+import "./styles/styles.scss";
 
 class App extends Component {
   render() {
