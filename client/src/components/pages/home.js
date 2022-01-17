@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
-import { HashLink } from 'react-router-hash-link';
+import { Link } from "react-router-dom";
 //By using export default, i'm able to name the variable anything and it'll
 //be equal to the default export, which in this case was the class "Slideshow"
 import SlideshowModule from "../modules/slideshow";
@@ -41,40 +40,48 @@ class Home extends Component {
 	render() {
 		return(
 			<div>
-				<section className="home-img-1">
-					<h2 className="centered">Programmer With <HashLink to="/#aboutme" className="highlight">{this.state.changingText[this.state.textID]}</HashLink></h2>
-				</section>
-				<section id="aboutme">
-					<h2>About Me</h2>
-					<p>
-						My name is Alex Spalvieri and I've been programming for most of my life. 
-						Starting with video game programming, I went from text adventures to 2D and 3D game development. 
-						Later, I went onto front-end and back-end web development. My skills and passion are with software 
-						and back-end programming.
-					</p>
-				</section>
-				<section>
-					<h2>Hobby Projects</h2>
-					<p>
-						Snippets from various games I've developed in my spare time.
-					</p>
-					<div className="slideshow" id="forgottenSpace">
-						<div className="slide"><img src="" alt=""/></div>
-						<div className="slide"><img src="" alt=""/></div>
-						<div className="slide"><img src="" alt=""/></div>
+				<div className="home-img-1 text-center">
+					<h2 className="centered">Programmer With <Link to="/projects" className="highlight">{this.state.changingText[this.state.textID]}</Link></h2>
+				</div>
+				<div className="container-fluid">
+					<section className="row" style={{padding: "90px 0"}}>
+						<div className="col-12 col-md-8 text-center mx-auto">
+							<h2>About Me</h2>
+							<p>
+								My name is Alex Spalvieri and I've been programming for most of my life. 
+								Starting with video game programming, I went from text adventures to 2D and 3D game development. 
+								Later, I went onto front-end and back-end web development. My skills and passion are with software 
+								and back-end programming.
+							</p>
+						</div>
+					</section>
+					<section className="row" style={{padding: "90px 0"}}>
+						<div className="col-12 text-center mx-auto">
+							<h2>Hobby Projects</h2>
+							<p>
+								Snippets from various games I've developed in my spare time.
+							</p>
+							<div className="slideshow" id="forgottenSpace">
+								<div className="slide"><img src="" alt=""/></div>
+								<div className="slide"><img src="" alt=""/></div>
+								<div className="slide"><img src="" alt=""/></div>
+							</div>
+						</div>
+					</section>
+					<section className="row" style={{padding: "90px 0"}}>
+						<div className="col-12 col-md-8 text-center mx-auto">
+							<h2>Contact Me</h2>
+							<p>
+								My contact information is available at my LinkedIn:
+								<br/>
+								<a href="https://www.linkedin.com/in/alex-spalvieri/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/alex-spalvieri/</a>
+							</p>
+						</div>
+					</section>
+					<div id="modal">
+						<img src="" className="modal-content" alt="" />
+						<span className="close">&times;</span>
 					</div>
-				</section>
-				<section>
-					<h2>Contact Me</h2>
-					<p>
-						My contact information is available at my LinkedIn:
-						<br/>
-						<a href="https://www.linkedin.com/in/alex-spalvieri/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/alex-spalvieri/</a>
-					</p>
-				</section>
-				<div id="modal">
-					<img src="" className="modal-content" alt="" />
-					<span className="close">&times;</span>
 				</div>
 			</div>
 		);

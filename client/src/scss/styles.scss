@@ -1,5 +1,5 @@
 $bodycolor: rgba(255, 255, 255, 0.75);
-$navcolor: rgba(192, 192, 192, 0.7);
+$navcolor: rgba(192, 192, 192, 0.9);
 $navcolorsolid: rgb(192, 192, 192);
 $footcolor: rgb(128, 128, 128);
 
@@ -12,12 +12,12 @@ $footcolor: rgb(128, 128, 128);
 		background-color: $bodycolor;
 	}
 	nav {
+		backdrop-filter: blur(3px);
 		margin: 0 auto;
 		min-height: 80px;
 		border-bottom: 2px solid black;
 	}
 	h1, h2 {
-		text-align: center;
 		color: black;
 	}
 	h1 {
@@ -62,21 +62,11 @@ $footcolor: rgb(128, 128, 128);
 		padding-top: 100px;
 	}
 	section {
-		padding: 100px 0;
-		&:nth-child(2n+1) {
+		&:nth-child(even) {
 			background-color: rgb(240, 240, 240);
 		}
-		p, >div {
-			margin: 0 auto;
-			width: 65%;
-		}
 		p {
-			text-align: center;
-			margin: 0 auto;
 			font-size: 1.2rem;
-		}
-		&:first-of-type {
-			padding: 0;
 		}
 	}
 
@@ -138,7 +128,7 @@ $footcolor: rgb(128, 128, 128);
 		}
 	}
 
-	.fab {
+	.mobile-icons .fab {
 		float: right;
 		margin-top: 5px;
 		margin-left: 5px;
@@ -172,9 +162,6 @@ $footcolor: rgb(128, 128, 128);
 				}
 			}
 		}
-		.container {
-			padding-top: 60px;
-		}
 
 		.navbar-brand {
 			margin-right: 0;
@@ -193,19 +180,10 @@ $footcolor: rgb(128, 128, 128);
 		header {
 			padding-top: 80px;
 		}
-		section {
-			padding: 75px 0;
-			p, > div {
-				width: 90%;
-			}
-			&:first-of-type {
-				padding: 0;
-			}
-		}
 		.mobile-icons {
 			margin: 12px auto 0 auto;
 			background-color: unset !important;
-			a {
+			a, .fab {
 				margin: 0 15px;
 			}
 		}
@@ -219,10 +197,10 @@ $footcolor: rgb(128, 128, 128);
 				text-align: center;
 				font-size: 150%;
 
-				&:nth-child(2n+1) {
+				&:nth-child(odd) {
 					background-color: rgb(167, 167, 167);
 				}
-				&:nth-child(2n) {
+				&:nth-child(even) {
 					background-color: rgb(139, 139, 139);
 				}
 			}
@@ -232,6 +210,8 @@ $footcolor: rgb(128, 128, 128);
 
 .slideshow {
 	text-align: center;
+	width: 65%;
+	margin: 0 auto;
 
 	.slide {
 		display: none;
@@ -293,6 +273,8 @@ $footcolor: rgb(128, 128, 128);
 	}
 
 	@media screen and (max-width: 991px) {
+		width: 95%;
+
 		.slide img {
 			width: 100%;
 			margin: 25px 0;
