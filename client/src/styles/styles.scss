@@ -208,7 +208,7 @@ $footcolor: rgb(128, 128, 128);
 	}
 }
 
-.slideshow {
+.slideshow, .sh-modal {
 	text-align: center;
 	width: 65%;
 	margin: 0 auto;
@@ -217,7 +217,7 @@ $footcolor: rgb(128, 128, 128);
 		display: none;
 		img {
 			width: 70%;
-			margin: 25px;
+			margin: 0 0 25px 0;
 			border: 3px solid black;
 			transition: opacity 150ms ease;
 			&:hover {
@@ -237,7 +237,7 @@ $footcolor: rgb(128, 128, 128);
 	.slidebutton-nav {
 		color: black;
 		font-size: large;
-		border-radius: 10px;
+		border-radius: 5px;
 		width: 45px;
 		height: 35px;
 		background-color: lightgray;
@@ -273,18 +273,22 @@ $footcolor: rgb(128, 128, 128);
 	}
 
 	@media screen and (max-width: 991px) {
-		width: 95%;
+		width: 65%;
 
 		.slide img {
 			width: 100%;
-			margin: 25px 0;
 		}
+	}
+
+	@media screen and (max-width: 691px) {
+		width: 95%;
 	}
 }
     
-#modal {
+.sh-modal {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
+	border-radius: 0;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -293,9 +297,38 @@ $footcolor: rgb(128, 128, 128);
 	background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 	z-index: 1234; //Ensure it's above the nav, because bootstrap gives it 1030 index...
 	transition: opacity 500ms ease;
+
+	.slidebutton-nav {
+		position: absolute;
+		bottom: 3%;
+		width: 13%;
+		height: 8%;
+		outline: 2px black solid;
+		&:first-child {
+			left: 25%;
+		}
+		&:last-child {
+			right: 25%
+		}
+		&:focus {
+			outline: 2px black solid;
+		}
+		@media screen and (max-width: 575px) {
+			display: inline-block;
+			width: 18%;
+			height: 10%;
+			&:first-child {
+				left: 15%;
+			}
+			&:last-child {
+				right: 15%;
+			}
+		}
+	}
 	
-	.modal-content {
+	.sh-modal-content {
 		display: block;
+		position: relative;
 		margin: auto;
 		width: unset;
 		max-width: 90%;
@@ -322,7 +355,7 @@ $footcolor: rgb(128, 128, 128);
 	}
 	
 	@media screen and (max-width: 991px) {
-		#modal {
+		.sh-modal {
 			padding-top: 80px;
 		}
 		.close {

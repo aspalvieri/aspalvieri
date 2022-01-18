@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-//By using export default, i'm able to name the variable anything and it'll
-//be equal to the default export, which in this case was the class "Slideshow"
-import SlideshowModule from "../modules/slideshow";
 
 class Home extends Component {
 	constructor(props) {
@@ -17,7 +14,6 @@ class Home extends Component {
 	componentDidMount() {
 		document.querySelector("#navbarSupportedContent").classList.remove("show");
 		window.scrollTo(0, 0); //Push screen to top on new page
-		new SlideshowModule("home");
 		let highlight = document.querySelector(".highlight");
 		let intervalID = setInterval(() => this.changeText(highlight), 5000);
 		this.setState({ textIntervalID: intervalID });
@@ -57,15 +53,10 @@ class Home extends Component {
 					</section>
 					<section className="row" style={{padding: "90px 0"}}>
 						<div className="col-12 text-center mx-auto">
-							<h2>Hobby Projects</h2>
+							<h2>Projects</h2>
 							<p>
-								Snippets from various games I've developed in my spare time.
+								All of my projects can be viewed on the <Link to="/projects">projects</Link> page.
 							</p>
-							<div className="slideshow" id="forgottenSpace">
-								<div className="slide"><img src="" alt=""/></div>
-								<div className="slide"><img src="" alt=""/></div>
-								<div className="slide"><img src="" alt=""/></div>
-							</div>
 						</div>
 					</section>
 					<section className="row" style={{padding: "90px 0"}}>
@@ -78,10 +69,6 @@ class Home extends Component {
 							</p>
 						</div>
 					</section>
-					<div id="modal">
-						<img src="" className="modal-content" alt="" />
-						<span className="close">&times;</span>
-					</div>
 				</div>
 			</div>
 		);

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Slideshow from "../modules/slideshow";
 
 class ForgottenSpace extends Component {
 	componentDidMount() {
@@ -15,12 +16,14 @@ class ForgottenSpace extends Component {
 				</header>
 				<div className="container-fluid">
 					<section className="row">
-						<div className="col-12 col-md-8 mx-auto">
-							WIP . . .
+						<div className="col-12 col-md-12 mx-auto py-5 text-center">
+							<Slideshow values={{folder: "projects/forgotten_space", size: 4}} />
 						</div>
-            <div className="col-12 mx-auto text-center">
+					</section>
+					<section className="row">
+						<div className="col-12 col-md-8 mx-auto py-5 text-center">
               <Link to="/projects" className="btn btn-outline-secondary">Back to Projects</Link>
-            </div>
+						</div>
 					</section>
 				</div>
 			</div>
