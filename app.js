@@ -37,12 +37,17 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// Serve the static files from the React app
-app.use(express.static(path.join(__dirname, "client/build")));
-
 // API Routes
 const routes = require("./routes/index");
 app.use("/api", routes);
+
+//Set caches
+app.use(express.static("client/build/static", {
+  maxAge: 31536000
+}));
+
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, "client/build")));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
