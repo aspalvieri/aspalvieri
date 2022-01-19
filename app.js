@@ -42,7 +42,7 @@ const routes = require("./routes/index");
 app.use("/api", routes);
 
 //Set caches
-app.use(express.static("client/build/static", {
+app.use(express.static(path.join(__dirname, "client/build/static"), {
   setHeaders: function(res, path, stat) {
     res.set("Cache-Control", "max-age=31536000")
   }
