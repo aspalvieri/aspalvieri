@@ -42,14 +42,15 @@ const routes = require("./routes/index");
 app.use("/api", routes);
 
 //Set caches
-app.use(express.static(path.join(__dirname, "client/build/static"), {
+app.use(express.static(path.join(__dirname, "client/build"), {
+  maxAge: 31536000,
   setHeaders: function(res, path, stat) {
     res.set("Cache-Control", "max-age=31536000")
   }
 }));
 
 // Serve the static files from the React app
-app.use(express.static(path.join(__dirname, "client/build")));
+//app.use(express.static(path.join(__dirname, "client/build")));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
