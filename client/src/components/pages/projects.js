@@ -22,7 +22,7 @@ class Projects extends Component {
 								to create landlord and tenant accounts to allow them to view their respective properties/units. The app
 								will allow managers to input bills paid or money received from tenants, track expenses, and track all
 								useful information about tenants. Managers, landlords, and tenants can also print the ledgers relating
-								to the properties/units they have access to.
+								to the properties/units they have access to!
 							</p>
 							<p><small><code style={{wordWrap: "normal"}}>Node&nbsp;&nbsp;Express&nbsp;&nbsp;MongoDB&nbsp;&nbsp;React&nbsp;&nbsp;Redux</code></small></p>
 							<Link to="projects/property_manager" className="btn btn-primary btn-lg">View Project</Link>
