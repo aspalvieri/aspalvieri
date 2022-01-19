@@ -44,7 +44,7 @@ app.use("/api", routes);
 // Serve the static files from the React app
 const cacheAge = 31536000;
 app.use("/static", express.static(path.join(__dirname, "client/build/static"), { maxAge: cacheAge }));
-app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static(path.join(__dirname, "client/build"), { maxAge: 1 }));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));

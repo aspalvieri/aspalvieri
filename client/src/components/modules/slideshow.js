@@ -46,40 +46,34 @@ class Slideshow extends Component {
   }
 
   setSlide = (e) => {
-    e.preventDefault();
     this.setState({ current: parseInt(e.target.dataset.index) });
   }
 
   nextSlide = (e) => {
-    e.preventDefault();
     let current = this.state.current;
     current = (current + 1 > this.state.size ? 1 : current + 1);
     this.setState({ current });
   }
 
   nextSlideModal = (e) => {
-    e.preventDefault();
     let current = this.state.current;
     current = (current + 1 > this.state.size ? 1 : current + 1);
     this.setState({ current, modalImage: require(`../../assets/${this.state.folder}/${current}.png`) });
   }
 
   prevSlide = (e) => {
-    e.preventDefault();
     let current = this.state.current;
     current = (current - 1 <= 0 ? this.state.size : current - 1);
     this.setState({ current });
   }
 
   prevSlideModal = (e) => {
-    e.preventDefault();
     let current = this.state.current;
     current = (current - 1 <= 0 ? this.state.size : current - 1);
     this.setState({ current, modalImage: require(`../../assets/${this.state.folder}/${current}.png`) });
   }
 
   openModal = (e) => {
-    e.preventDefault();
     this.setState({
       modalDisplay: "block",
       modalImage: e.target.src
@@ -87,7 +81,6 @@ class Slideshow extends Component {
   }
 
   closeModal = (e) => {
-    e.preventDefault();
     this.setState({ modalDisplay: "none" });
   }
 
