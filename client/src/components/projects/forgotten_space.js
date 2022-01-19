@@ -16,6 +16,12 @@ class ForgottenSpace extends Component {
 				</header>
 				<div className="container-fluid">
 					<section className="row">
+						<div className="col-12 col-md-8 mx-auto py-5 text-center">
+							<h2>Top-down Dungeon Crawler</h2>
+							<p><small><code>C++&nbsp;&nbsp;SDL2</code></small></p>
+						</div>
+					</section>
+					<section className="row">
 						<div className="col-12 col-md-12 mx-auto py-5 text-center">
 							<Slideshow values={{folder: "projects/forgotten_space", size: 4}} />
 						</div>

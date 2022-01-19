@@ -11,7 +11,14 @@ import CityDefense from "./components/projects/city_defense";
 import EquationGame from "./components/projects/equation_game";
 import APIs from "./components/pages/apis";
 
+//Importing fontawesome, bootstrap, and custom css
+import "./assets/css/fontawesome.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/styles.scss";
+
+//Importing jquery and boostrap js
+import "jquery/dist/jquery.min.js";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 class App extends Component {
   render() {
