@@ -16,7 +16,7 @@ class Home extends Component {
 		document.querySelector("#navbarSupportedContent").classList.remove("show");
 		window.scrollTo(0, 0); //Push screen to top on new page
 		let highlight = document.querySelector(".highlight");
-		let intervalID = setInterval(() => this.changeText(highlight), 5000);
+		let intervalID = setInterval(() => this.changeText(highlight), 3500);
 		this.setState({ textIntervalID: intervalID });
 	}
 
@@ -46,7 +46,7 @@ class Home extends Component {
 						<h2 className="col-12 text-center mb-3">About Me</h2>
 							<div className="row">
 								<div className="col-6 col-sm-5 col-lg-4 col-xl-3 col-xxl-2 mx-auto mb-3 mb-md-0">
-									<img className="img-fluid img-thumbnail shadow" src={self_portrait} alt="Picture of Alex Spalvieri" />
+									<img className="img-fluid img-thumbnail shadow" src={self_portrait} alt="Alex Spalvieri" />
 								</div>
 								<div className="col-12 col-md-7 col-lg-8 col-xl-9 col-xxl-10">
 									<p>
