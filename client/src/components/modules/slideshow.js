@@ -18,7 +18,7 @@ class Slideshow extends Component {
     for (let i = 0; i < this.state.size; i++) {
       rows.push(
         <div key={key++} className="slide" style={{display: ((i+1) === this.state.current ? "inline-block" : "none")}}>
-          <img onClick={this.openModal} src={`/assets/${this.state.folder}/${i+1}.png`} alt=""/>
+          <img onClick={this.openModal} src={require(`../../assets/${this.state.folder}/${i+1}.png`)} alt=""/>
         </div>
       );
     }
@@ -61,7 +61,7 @@ class Slideshow extends Component {
     e.preventDefault();
     let current = this.state.current;
     current = (current + 1 > this.state.size ? 1 : current + 1);
-    this.setState({ current, modalImage: `/assets/${this.state.folder}/${current}.png` });
+    this.setState({ current, modalImage: require(`../../assets/${this.state.folder}/${current}.png`) });
   }
 
   prevSlide = (e) => {
@@ -75,7 +75,7 @@ class Slideshow extends Component {
     e.preventDefault();
     let current = this.state.current;
     current = (current - 1 <= 0 ? this.state.size : current - 1);
-    this.setState({ current, modalImage: `/assets/${this.state.folder}/${current}.png` });
+    this.setState({ current, modalImage: require(`../../assets/${this.state.folder}/${current}.png`) });
   }
 
   openModal = (e) => {
