@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import self_portrait from "../../assets/home/me.png";
 
 class Home extends Component {
 	constructor(props) {
@@ -41,14 +42,23 @@ class Home extends Component {
 				</div>
 				<div className="container-fluid">
 					<section className="row" style={{padding: "90px 0"}}>
-						<div className="col-12 col-md-8 text-center mx-auto">
-							<h2>About Me</h2>
-							<p>
-								My name is Alex Spalvieri and I've been programming for most of my life. 
-								Starting with video game programming, I went from text adventures to 2D and 3D game development. 
-								Later, I went onto front-end and back-end web development. My skills and passion are with software 
-								and back-end programming.
-							</p>
+						<div className="col-12 col-md-8 mx-auto">
+						<h2 className="col-12 text-center mb-3">About Me</h2>
+							<div className="row">
+								<div className="col-6 col-sm-5 col-lg-4 col-xl-3 col-xxl-2 mx-auto mb-3 mb-md-0">
+									<img className="img-fluid img-thumbnail shadow" src={self_portrait} alt="Picture of Alex Spalvieri" />
+								</div>
+								<div className="col-12 col-md-7 col-lg-8 col-xl-9 col-xxl-10">
+									<p>
+										My name is Alex Spalvieri and I've been programming for most of my life. 
+										Starting with video game programming, I went from text adventures to 2D and 3D game development. 
+										Later, I went onto front-end and back-end web development. I attended Georgian College, and majored
+										in Interactive Media Design, where I learned to use old and new technologies for creating websites.
+										The program started with HTML, CSS, PHP, and MySQL. Later, it switched to Node.js, Express, React,
+										and MongoDB. I enjoy back-end development, as well as working on fun and interactive projects.
+									</p>
+								</div>
+							</div>
 						</div>
 					</section>
 					<section className="row" style={{padding: "90px 0"}}>
