@@ -43,7 +43,9 @@ app.use("/api", routes);
 
 //Set caches
 app.use(express.static("client/build/static", {
-  maxAge: 31536000
+  setHeaders: function(res, path, stat) {
+    res.set("Cache-Control", "max-age=31536000")
+  }
 }));
 
 // Serve the static files from the React app
