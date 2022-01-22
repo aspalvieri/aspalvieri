@@ -1,19 +1,15 @@
 require("dotenv").config();
 
-const sslRedirect = require("heroku-ssl-redirect").default;
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
 
 const app = express();
 
-//Heroku HTTPS redirect
-app.use(sslRedirect());
-
 //CrossOrigin Requests
 var allowedOrigins = [
   "http://localhost:3000",
-  "https://aspalvieri.herokuapp.com"
+  "https://plucky-rarity-339004.uc.r.appspot.com"
 ];
 app.use(cors({
   origin: function(origin, callback){
@@ -50,7 +46,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
-const port = (process.env.PORT || 5000);
+const port = (process.env.PORT || 8080);
 app.listen(port, () => console.log(`Server is running on port ${port}.`));
 
 module.exports = { app };

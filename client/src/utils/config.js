@@ -10,7 +10,7 @@ const configs = {
     VERSION
   },
   production: {
-    SERVER_URI: "https://aspalvieri.herokuapp.com",
+    SERVER_URI: "https://api-dot-plucky-rarity-339004.uc.r.appspot.com",
     VERSION
   },
 };
