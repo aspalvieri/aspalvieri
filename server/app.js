@@ -9,7 +9,9 @@ const app = express();
 //CrossOrigin Requests
 var allowedOrigins = [
   "http://localhost:3000",
-  "https://plucky-rarity-339004.uc.r.appspot.com"
+  "https://plucky-rarity-339004.uc.r.appspot.com",
+  "https://www.aspalvieri.com",
+  "https://aspalvieri.com"
 ];
 app.use(cors({
   origin: function(origin, callback){
