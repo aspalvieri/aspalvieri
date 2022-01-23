@@ -10,6 +10,7 @@ import ForgottenSpace from "./components/projects/forgotten_space";
 import CityDefense from "./components/projects/city_defense";
 import EquationGame from "./components/projects/equation_game";
 import APIs from "./components/pages/apis";
+import PageNotFound from "./components/partials/404";
 
 //Importing fontawesome, bootstrap, and custom css
 import "./assets/css/fontawesome.min.css";
@@ -34,6 +35,7 @@ class App extends Component {
             <Route exact path="/projects/city_defense" component={CityDefense} />
             <Route exact path="/projects/equation_game" component={EquationGame} />
             <Route exact path="/apis" component={APIs} />
+            <Route path="*" component={PageNotFound} />
           </Switch>
           <Footer />
         </div>
