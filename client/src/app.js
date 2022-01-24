@@ -11,6 +11,7 @@ import CityDefense from "./components/projects/city_defense";
 import EquationGame from "./components/projects/equation_game";
 import APIs from "./components/pages/apis";
 import PageNotFound from "./components/partials/404";
+import ScrollToTop from "./components/modules/scrolltotop";
 
 //Importing fontawesome, bootstrap, and custom css
 import "./assets/css/fontawesome.min.css";
@@ -27,6 +28,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navigation />
+          <ScrollToTop />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/projects" component={Projects} />

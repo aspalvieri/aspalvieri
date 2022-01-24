@@ -16,11 +16,6 @@ class APIs extends Component {
 		}
 	}
 
-	componentDidMount() {
-		document.querySelector("#navbarSupportedContent").classList.remove("show");
-		window.scrollTo(0, 0); //Push screen to top on new page
-	}
-
 	fetchRandomArray = () => {
 		let { min_arr, max_arr, min_val, max_val } = this.state.array_vars;
 		Axios.get(`${config.SERVER_URI}/api/test/random_array?min_arr=${min_arr}&max_arr=${max_arr}&min_val=${min_val}&max_val=${max_val}`)

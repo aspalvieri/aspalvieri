@@ -2,11 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class Projects extends Component {
-	componentDidMount() {
-		document.querySelector("#navbarSupportedContent").classList.remove("show");
-		window.scrollTo(0, 0); //Push screen to top on new page
-	}
-
 	render() {
 		return(
 			<div>
@@ -18,14 +13,15 @@ class Projects extends Component {
 						<div className="col-12 col-sm-6 col-md-5 order-2 order-sm-1 ms-auto">
 							<h2>Property Manager</h2>
 							<p className="mb-1">
-								Property managing application for property managers, landlords, and tenants. Property managers are able
-								to create landlord and tenant accounts to allow them to view their respective properties/units. The app
-								will allow managers to input bills paid or money received from tenants, track expenses, and track all
-								useful information about tenants. Managers, landlords, and tenants can also print the ledgers relating
-								to the properties/units they have access to.
+								Property managing application for property managers and landlords. The manager can create, update, view, and delete
+								properties. Within each property, the manager is able to create, update, view, and delete units. This tool is useful
+								for keeping trach of which units belong to which properties.
 							</p>
 							<p><small><code style={{wordWrap: "normal"}}>Node&nbsp;&nbsp;Express&nbsp;&nbsp;MongoDB&nbsp;&nbsp;React&nbsp;&nbsp;Redux</code></small></p>
-							<Link to="projects/property_manager" className="btn btn-primary btn-lg">View Project</Link>
+							<Link to="projects/property_manager" className="btn btn-primary btn-lg me-4">View Project</Link>
+							<a target="_blank" className="btn btn-dark" rel="noopener noreferrer" href="https://github.com/aspalvieri/PropertyManager">
+								<i className="fab fa-github"></i> View on GitHub
+							</a>
 						</div>
 						<div className="col-8 col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-1 order-sm-2 mb-4 mb-sm-0 mx-auto mx-sm-0 me-sm-auto">
 							<img className="img-thumbnail shadow" src={require("../../assets/projects/property_manager/2.png")} alt="Example of Property Manager" />
@@ -41,7 +37,10 @@ class Projects extends Component {
 								as you progress through the game.
 							</p>
 							<p><small><code style={{wordWrap: "normal"}}>C++&nbsp;&nbsp;SDL2</code></small></p>
-							<Link to="projects/forgotten_space" className="btn btn-primary btn-lg">View Project</Link>
+							<Link to="projects/forgotten_space" className="btn btn-primary btn-lg me-4">View Project</Link>
+							<a target="_blank" className="btn btn-dark" rel="noopener noreferrer" href="https://github.com/aspalvieri/ForgottenSpace">
+								<i className="fab fa-github"></i> View on GitHub
+							</a>
 						</div>
 						<div className="col-8 col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-1 order-sm-2 mb-4 mb-sm-0 mx-auto mx-sm-0 me-sm-auto">
 							<img className="img-thumbnail shadow" src={require("../../assets/projects/forgotten_space/2.png")} alt="Example of Ruins of Forgotten Space" />
@@ -57,7 +56,10 @@ class Projects extends Component {
 								answers, and if the input was correct or not.
 							</p>
 							<p><small><code style={{wordWrap: "normal"}}>JavaScript</code></small></p>
-							<Link to="projects/equation_game" className="btn btn-primary btn-lg">View Project</Link>
+							<Link to="projects/equation_game" className="btn btn-primary btn-lg me-4">View Project</Link>
+							<a target="_blank" className="btn btn-dark" rel="noopener noreferrer" href="https://github.com/aspalvieri/RandomEquationGame">
+								<i className="fab fa-github"></i> View on GitHub
+							</a>
 						</div>
 						<div className="col-8 col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-1 order-sm-2 mb-4 mb-sm-0 mx-auto mx-sm-0 me-sm-auto">
 							<img className="img-thumbnail shadow" src={require("../../assets/projects/equation_game/1.png")} alt="Example of Random Equation Game" />
@@ -73,7 +75,10 @@ class Projects extends Component {
 								new technologies to assist with the defense and growth of your city.
 							</p>
 							<p><small><code style={{wordWrap: "normal"}}>C++&nbsp;&nbsp;SDL2</code></small></p>
-							<Link to="projects/city_defense" className="btn btn-primary btn-lg">View Project</Link>
+							<Link to="projects/city_defense" className="btn btn-primary btn-lg me-4">View Project</Link>
+							<a target="_blank" className="btn btn-dark" rel="noopener noreferrer" href="https://github.com/aspalvieri/CityDefense">
+								<i className="fab fa-github"></i> View on GitHub
+							</a>
 						</div>
 						<div className="col-8 col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-1 order-sm-2 mb-4 mb-sm-0 mx-auto mx-sm-0 me-sm-auto">
 							<img className="img-thumbnail shadow" src={require("../../assets/projects/city_defense/1.png")} alt="Example of City Defense" />

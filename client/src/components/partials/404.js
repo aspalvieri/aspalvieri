@@ -6,9 +6,9 @@ class PageNotFound extends Component {
     return (
       <div>
         <header className="mx-auto text-center">
-          <h2><b>404:</b> Page Not Found</h2>
+          <h2 className="mb-4"><b>404:</b> Page Not Found</h2>
           <Link to="/" className="btn btn-outline-secondary">
-            <i class="fas fa-long-arrow-alt-left"></i> Back to home
+            Back to home
           </Link>
         </header>
       </div>

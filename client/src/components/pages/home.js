@@ -13,8 +13,6 @@ class Home extends Component {
 	}
 
 	componentDidMount() {
-		document.querySelector("#navbarSupportedContent").classList.remove("show");
-		window.scrollTo(0, 0); //Push screen to top on new page
 		let highlight = document.querySelector(".highlight");
 		let intervalID = setInterval(() => this.changeText(highlight), 3500);
 		this.setState({ textIntervalID: intervalID });
