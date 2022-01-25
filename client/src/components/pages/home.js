@@ -63,8 +63,8 @@ class Home extends Component {
 						<div className="col-12 text-center mx-auto">
 							<h2>Projects</h2>
 							<p>
+								Some of my projects can be viewed on the <Link to="/projects">projects</Link> page.<br/>
 								All of my projects can be viewed on my <a target="_blank" rel="noopener noreferrer" href="https://github.com/aspalvieri">github</a> profile.
-								Some of them can be viewed on the <Link to="/projects">projects</Link> page.
 							</p>
 						</div>
 					</section>
