@@ -72,9 +72,8 @@ class Home extends Component {
 						<div className="col-12 col-md-8 text-center mx-auto">
 							<h2>Contact Me</h2>
 							<p>
-								My contact information is available at my LinkedIn:
-								<br/>
-								<a href="https://www.linkedin.com/in/alex-spalvieri/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/alex-spalvieri/</a>
+								My contact information is available on my <a href="https://resume.creddle.io/resume/bi2ef5cyxoc" target="_blank" rel="noopener noreferrer">Online Resume</a>, 
+								or at my <a href="https://www.linkedin.com/in/alex-spalvieri/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
 							</p>
 						</div>
 					</section>
