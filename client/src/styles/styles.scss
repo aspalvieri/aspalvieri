@@ -123,8 +123,16 @@ $footcolor: rgb(128, 128, 128);
 			width: 100%;
 			justify-content: flex-start;
 		}
-		li:nth-child(n+4) {
+		li {
+			text-align: center;
+			min-width: 75px;
+		}
+		li:nth-child(n+5) {
 			margin-left: auto;
+		}
+
+		.nav-link-active {
+			text-decoration: underline;
 		}
 	}
 

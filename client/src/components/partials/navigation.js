@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 class Navigation extends Component {
 	render() {
@@ -14,13 +14,16 @@ class Navigation extends Component {
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav mr-auto">
 						<li className="nav-item">
-							<Link className="nav-link" to="/">Home</Link>
+							<NavLink className="nav-link" to="/" exact activeClassName="nav-link-active">Home</NavLink>
 						</li>
 						<li className="nav-item">
-							<Link className="nav-link" to="/projects">Projects</Link>
+							<NavLink className="nav-link" to="/projects" exact activeClassName="nav-link-active">Projects</NavLink>
 						</li>
 						<li className="nav-item">
-							<Link className="nav-link" to="/apis">APIs</Link>
+							<NavLink className="nav-link" to="/apis" exact activeClassName="nav-link-active">APIs</NavLink>
+						</li>
+						<li className="nav-item">
+							<a className="nav-link" target="_blank" rel="noreferrer" href="https://game.aspalvieri.com/">Web Game</a>
 						</li>
 						<li className="nav-item mobile-icons">
 							<a target="_blank" href="https://www.linkedin.com/in/alex-spalvieri/" className="fab fa-linkedin" rel="noopener noreferrer"> </a>

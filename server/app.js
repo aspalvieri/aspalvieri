@@ -11,7 +11,8 @@ var allowedOrigins = [
   "http://localhost:3000",
   "https://plucky-rarity-339004.uc.r.appspot.com",
   "https://www.aspalvieri.com",
-  "https://aspalvieri.com"
+  "https://aspalvieri.com",
+  "https://game.aspalvieri.com"
 ];
 app.use(cors({
   origin: function(origin, callback){
