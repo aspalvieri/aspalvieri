@@ -17,10 +17,10 @@ class Navigation extends Component {
 							<NavLink className="nav-link" to="/" exact activeClassName="nav-link-active">Home</NavLink>
 						</li>
 						<li className="nav-item">
-							<NavLink className="nav-link" to="/projects" exact activeClassName="nav-link-active">Projects</NavLink>
+							<NavLink className="nav-link" to="/projects" activeClassName="nav-link-active">Projects</NavLink>
 						</li>
 						<li className="nav-item">
-							<NavLink className="nav-link" to="/apis" exact activeClassName="nav-link-active">APIs</NavLink>
+							<NavLink className="nav-link" to="/apis" activeClassName="nav-link-active">APIs</NavLink>
 						</li>
 						<li className="nav-item">
 							<a className="nav-link" target="_blank" rel="noreferrer" href="https://game.aspalvieri.com/">Web Game</a>
