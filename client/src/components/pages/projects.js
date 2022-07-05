@@ -84,6 +84,17 @@ class Projects extends Component {
 							<img className="img-thumbnail shadow" src={require("../../assets/projects/city_defense/1.png")} alt="Example of City Defense" />
 						</div>
 					</section>
+					<section className="row py-5">
+						<div className="col-12 text-center">
+							<h2>More Projects</h2>
+							<p>
+								To see all of my projects, please visit my
+								<a target="_blank" className="btn btn-sm btn-dark" style={{marginLeft: "10px"}} rel="noopener noreferrer" href="https://github.com/aspalvieri">
+									<i className="fab fa-github"></i> GitHub
+								</a>
+							</p>
+						</div>
+					</section>
 				</div>
 			</div>
 		);
