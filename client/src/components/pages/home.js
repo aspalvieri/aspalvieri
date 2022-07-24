@@ -4,13 +4,15 @@ import self_portrait from "../../assets/home/me.png";
 import classNames from "classnames";
 import axios from "axios";
 import { config } from "../../utils/config";
+import Recaptcha from "react-google-invisible-recaptcha";
 
 class Home extends Component {
 	constructor(props) {
 		super(props);
+		this.recaptcha = React.createRef();
+		this.SITE_KEY = "6LfIexkhAAAAAO3-jubL6T_3W9wNgUsYjI0mL-0b";
 		this.state = {
 			textIntervalID: null,
-			SITE_KEY: "6Lf9RxkhAAAAAPfXzj9kXiea2s6Qe4JnNyQ10eZE",
 			changingText: ["Dedication", "Passion", "Devotion", "Ambition"],
 			textID: 0,
 			contact: {
@@ -30,27 +32,6 @@ class Home extends Component {
 		let highlight = document.querySelector(".highlight");
 		let intervalID = setInterval(() => this.changeText(highlight), 3500);
 		this.setState({ textIntervalID: intervalID });
-		const loadScriptByURL = (id, url, callback) => {
-			const isScriptExist = document.getElementById(id);
-	 
-			if (!isScriptExist) {
-				var script = document.createElement("script");
-				script.type = "text/javascript";
-				script.src = url;
-				script.id = id;
-				script.onload = function () {
-					if (callback) callback();
-				};
-				document.body.appendChild(script);
-			}
-	 
-			if (isScriptExist && callback) callback();
-		}
-	 
-		// load the script by passing the URL
-		loadScriptByURL("recaptcha-key", `https://www.google.com/recaptcha/api.js?render=${this.state.SITE_KEY}`, function () {
-			console.log("Recaptcha loaded!");
-		});
 	}
 
 	componentWillUnmount() {
@@ -102,37 +83,44 @@ class Home extends Component {
 		const {name, email, message} = this.state.contact;
 		if (name === "" || name.length > 32) {
 			this.updateValid("name", false);
-			this.disableButton(false);
 			debounce = true;
 		}
 		if (email === "" || email.length > 128 || !email.includes("@") || !email.includes(".")) {
 			this.updateValid("email", false);
-			this.disableButton(false);
 			debounce = true;
 		}
 		if (message === "" || message.length > 1000) {
 			this.updateValid("message", false);
-			this.disableButton(false);
 			debounce = true;
 		}
+
 		if (!debounce) {
-			window.grecaptcha.ready(() => {
-				window.grecaptcha.execute(this.state.SITE_KEY, { action: 'contact_submit' }).then(token => {
-					axios.post(`${config.SERVER_URI}/api/mail/send`, {token, name, email, message}).then(res => {
-						if (res.status === 200) {
-							this.setState(state => ({
-								contact: {
-									...state.contact,
-									sentForm: true
-								}
-							}));
-						}
-					}).catch(err => {
-						this.disableButton(false);
-					});
-				});
-			});
+			this.recaptcha.execute();
 		}
+		else {
+			this.disableButton(false);
+			this.recaptcha.reset();
+		}
+	};
+
+	onResolved = e => {
+		const {name, email, message} = this.state.contact;
+		const token = this.recaptcha.getResponse();
+		axios.post(`${config.SERVER_URI}/api/mail/send`, {token, name, email, message}).then(res => {
+			if (res.status === 200) {
+				this.setState(state => ({
+					contact: {
+						...state.contact,
+						sentForm: true
+					}
+				}));
+			}
+			else {
+				this.disableButton(false);
+			}
+		}).catch(err => {
+			this.disableButton(false);
+		});
 	};
 	
 	render() {
@@ -194,6 +182,10 @@ class Home extends Component {
 									<a href="https://policies.google.com/terms">Terms of Service</a> apply.
 								</div>
 								<button type="submit" className={classNames("mt-3 btn btn-primary col-3", {"disabled": this.state.contact.sending})}>Submit form</button>
+								<Recaptcha
+									ref={ ref => this.recaptcha = ref }
+									sitekey={this.SITE_KEY}
+									onResolved={this.onResolved} />
 							</form>
 							: <p>
 								Your message has successfully been sent!

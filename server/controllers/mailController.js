@@ -27,13 +27,13 @@ exports.sendMail = (req, res) => {
     from: process.env.EMAIL_USER,
     to: process.env.EMAIL_USER,
     subject: 'Contact Form Submission',
-    html: `<p>Name: ${name}</p>
-           <p>Email: ${email}</p>
-           <p>Message: ${message}</p>`,
+    text: `Name: ${name}\n
+Email: ${email}\n
+Message: ${message}`,
   };
   const VERIFY_URL = `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${token}`;
   axios.post(VERIFY_URL).then(cb => {
-    if (cb.data.success === true && cb.data.score >= 0.5 && cb.data.action === "contact_submit") {
+    if (cb.data.success === true) {
       transporter.sendMail(mail, (err, data) => {
         if (err) {
           res.status(500).json({ status: err });
