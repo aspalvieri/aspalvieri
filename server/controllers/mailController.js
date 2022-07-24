@@ -33,7 +33,7 @@ exports.sendMail = (req, res) => {
   };
   const VERIFY_URL = `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${token}`;
   axios.post(VERIFY_URL).then(cb => {
-    if (cb.data.success === true) {
+    if (cb.data.success === true && cb.data.score >= 0.5 && cb.data.action === "contact_submit") {
       transporter.sendMail(mail, (err, data) => {
         if (err) {
           res.status(500).json({ status: err });

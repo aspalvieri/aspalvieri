@@ -49,7 +49,7 @@ class Home extends Component {
 	 
 		// load the script by passing the URL
 		loadScriptByURL("recaptcha-key", `https://www.google.com/recaptcha/api.js?render=${this.state.SITE_KEY}`, function () {
-			console.log("Script loaded!");
+			console.log("Recaptcha loaded!");
 		});
 	}
 
@@ -117,7 +117,7 @@ class Home extends Component {
 		}
 		if (!debounce) {
 			window.grecaptcha.ready(() => {
-				window.grecaptcha.execute(this.state.SITE_KEY, { action: 'submit' }).then(token => {
+				window.grecaptcha.execute(this.state.SITE_KEY, { action: 'contact_submit' }).then(token => {
 					axios.post(`${config.SERVER_URI}/api/mail/send`, {token, name, email, message}).then(res => {
 						if (res.status === 200) {
 							this.setState(state => ({
