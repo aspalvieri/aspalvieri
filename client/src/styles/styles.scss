@@ -3,6 +3,9 @@ $navcolor: rgba(192, 192, 192, 0.9);
 $navcolorsolid: rgb(192, 192, 192);
 $footcolor: rgb(128, 128, 128);
 
+//Hide the recaptcha button
+.grecaptcha-badge { visibility: hidden; }
+
 .App {
 	display: flex;
 	flex-direction: column;
