@@ -18,7 +18,7 @@ class Slideshow extends Component {
     for (let i = 0; i < this.state.size; i++) {
       rows.push(
         <div key={key++} className="slide" style={{display: ((i+1) === this.state.current ? "inline-block" : "none")}}>
-          <img onClick={this.openModal} src={require(`../../assets/${this.state.folder}/${i+1}.png`)} alt=""/>
+          <img onClick={this.openModal} src={require(`../../assets/${this.state.folder}/${i+1}.webp`)} alt=""/>
         </div>
       );
     }

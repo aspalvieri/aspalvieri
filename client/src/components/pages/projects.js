@@ -24,7 +24,7 @@ class Projects extends Component {
 							</a>
 						</div>
 						<div className="col-8 col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-1 order-sm-2 mb-4 mb-sm-0 mx-auto mx-sm-0 me-sm-auto">
-							<img className="img-thumbnail shadow" src={require("../../assets/projects/property_manager/2.png")} alt="Example of Property Manager" />
+							<img className="img-thumbnail shadow" src={require("../../assets/projects/property_manager/2.webp")} alt="Example of Property Manager" />
 						</div>
 					</section>
 					<section className="row py-5">
@@ -43,7 +43,7 @@ class Projects extends Component {
 							</a>
 						</div>
 						<div className="col-8 col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-1 order-sm-2 mb-4 mb-sm-0 mx-auto mx-sm-0 me-sm-auto">
-							<img className="img-thumbnail shadow" src={require("../../assets/projects/forgotten_space/2.png")} alt="Example of Ruins of Forgotten Space" />
+							<img className="img-thumbnail shadow" src={require("../../assets/projects/forgotten_space/2.webp")} alt="Example of Ruins of Forgotten Space" />
 						</div>
 					</section>
 					<section className="row py-5">
@@ -62,7 +62,7 @@ class Projects extends Component {
 							</a>
 						</div>
 						<div className="col-8 col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-1 order-sm-2 mb-4 mb-sm-0 mx-auto mx-sm-0 me-sm-auto">
-							<img className="img-thumbnail shadow" src={require("../../assets/projects/equation_game/1.png")} alt="Example of Random Equation Game" />
+							<img className="img-thumbnail shadow" src={require("../../assets/projects/equation_game/1.webp")} alt="Example of Random Equation Game" />
 						</div>
 					</section>
 					<section className="row py-5">
@@ -81,7 +81,7 @@ class Projects extends Component {
 							</a>
 						</div>
 						<div className="col-8 col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-1 order-sm-2 mb-4 mb-sm-0 mx-auto mx-sm-0 me-sm-auto">
-							<img className="img-thumbnail shadow" src={require("../../assets/projects/city_defense/1.png")} alt="Example of City Defense" />
+							<img className="img-thumbnail shadow" src={require("../../assets/projects/city_defense/1.webp")} alt="Example of City Defense" />
 						</div>
 					</section>
 					<section className="row py-5">
