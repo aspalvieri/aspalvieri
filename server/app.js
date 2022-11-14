@@ -41,13 +41,11 @@ const routes = require("./routes/index");
 app.use("/api", routes);
 
 // Serve the static files from the React app
-const cacheAge = 31536000;
-app.use("/static", express.static(path.join(__dirname, "client/build/static"), { maxAge: cacheAge }));
-app.use(express.static(path.join(__dirname, "client/build")));
+// app.use(express.static(path.join(__dirname, "build")));
 
-app.get(/^(?!.*_ah).*$/, (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
-});
+// app.get(/^(?!.*_ah).*$/, (req, res) => {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 const port = (process.env.PORT || 5000);
 app.listen(port, () => console.log(`Server is running on port ${port}.`));
