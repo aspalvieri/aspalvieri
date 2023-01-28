@@ -58,7 +58,7 @@ class Slideshow extends Component {
   nextSlideModal = (e) => {
     let current = this.state.current;
     current = (current + 1 > this.state.size ? 1 : current + 1);
-    this.setState({ current, modalImage: require(`../../assets/${this.state.folder}/${current}.png`) });
+    this.setState({ current, modalImage: require(`../../assets/${this.state.folder}/${current}.webp`) });
   }
 
   prevSlide = (e) => {
@@ -70,7 +70,7 @@ class Slideshow extends Component {
   prevSlideModal = (e) => {
     let current = this.state.current;
     current = (current - 1 <= 0 ? this.state.size : current - 1);
-    this.setState({ current, modalImage: require(`../../assets/${this.state.folder}/${current}.png`) });
+    this.setState({ current, modalImage: require(`../../assets/${this.state.folder}/${current}.webp`) });
   }
 
   openModal = (e) => {
