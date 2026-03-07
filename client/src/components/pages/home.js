@@ -1,208 +1,270 @@
-import React, { Component } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import self_portrait from "../../assets/home/me.png";
 import classNames from "classnames";
 import axios from "axios";
-import { config } from "../../utils/config";
 import ReCAPTCHA from "react-google-recaptcha";
+import selfPortrait from "../../assets/home/me.png";
+import { projects } from "../../data/projects";
+import { config } from "../../utils/config";
 
-class Home extends Component {
-	constructor(props) {
-		super(props);
-		this.recaptcha = React.createRef();
-		this.SITE_KEY = "6LfIexkhAAAAAO3-jubL6T_3W9wNgUsYjI0mL-0b";
-		this.state = {
-			textIntervalID: null,
-			changingText: ["Dedication", "Passion", "Devotion", "Ambition"],
-			textID: 0,
-			contact: {
-				sending: false,
-				sentForm: false,
-				name: "",
-				nameValid: true,
-				email: "",
-				emailValid: true,
-				message: "",
-				messageValid: true
-			}
-		}
-	}
+const ROTATING_WORDS = ["Dedication", "Curiosity", "Discipline", "Ambition"];
 
-	componentDidMount() {
-		let highlight = document.querySelector(".highlight");
-		let intervalID = setInterval(() => this.changeText(highlight), 3500);
-		this.setState({ textIntervalID: intervalID });
-	}
+function Home() {
+  const recaptcha = useRef(null);
+  const [textIndex, setTextIndex] = useState(0);
+  const [contact, setContact] = useState({
+    sending: false,
+    sentForm: false,
+    name: "",
+    nameValid: true,
+    email: "",
+    emailValid: true,
+    message: "",
+    messageValid: true
+  });
 
-	componentWillUnmount() {
-		clearInterval(this.state.textIntervalID);
-	}
-	
-	changeText = (highlight) => {
-		highlight.style.opacity = 0;
-		setTimeout(() => {
-			let id = this.state.textID;
-			id = (id < this.state.changingText.length - 1 ? id + 1 : 0);
-			this.setState({ textID: id });
-			highlight.style.opacity = 1;
-		}, 200);
-	}
+  const featuredProjects = useMemo(() => projects.slice(0, 3), []);
 
-	onChange = e => {
-    this.setState(state => ({
-			contact: {
-				...state.contact,
-				[e.target.id]: e.target.value 
-			}
-		}));
-		this.updateValid(e.target.id, true);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return undefined;
+    }
+    const intervalId = window.setInterval(() => {
+      setTextIndex((current) => (current + 1) % ROTATING_WORDS.length);
+    }, 3200);
+    return () => window.clearInterval(intervalId);
+  }, []);
+
+  const updateValid = (field, value) => {
+    setContact((prev) => ({
+      ...prev,
+      [`${field}Valid`]: value
+    }));
   };
 
-	updateValid = (name, value) => {
-		this.setState(state => ({
-			contact: {
-				...state.contact,
-				[`${name}Valid`]: value
-			}
-		}));
-	}
+  const onChange = (event) => {
+    const { id, value } = event.target;
+    setContact((prev) => ({
+      ...prev,
+      [id]: value,
+      [`${id}Valid`]: true
+    }));
+  };
 
-	disableButton = (value) => {
-		this.setState(state => ({
-			contact: {
-				...state.contact,
-				sending: value
-			}
-		}));
-	}
+  const onResolved = async () => {
+    const recaptchaRef = recaptcha.current;
+    if (!recaptchaRef) {
+      setContact((prev) => ({ ...prev, sending: false }));
+      return;
+    }
 
-	handleSubmit = async (e) => {
-		e.preventDefault();
-		let debounce = false;
-		this.disableButton(true);
-		const {name, email, message} = this.state.contact;
-		if (name === "" || name.length > 32) {
-			this.updateValid("name", false);
-			debounce = true;
-		}
-		if (email === "" || email.length > 128 || !email.includes("@") || !email.includes(".")) {
-			this.updateValid("email", false);
-			debounce = true;
-		}
-		if (message === "" || message.length > 1000) {
-			this.updateValid("message", false);
-			debounce = true;
-		}
+    try {
+      const token = await recaptchaRef.executeAsync();
+      recaptchaRef.reset();
+      const { name, email, message } = contact;
+      const response = await axios.post(`${config.SERVER_URI}/api/mail/send`, {
+        token,
+        name,
+        email,
+        message
+      });
 
-		if (!debounce) {
-			await this.onResolved();
-		}
-		else {
-			this.disableButton(false);
-		}
-	};
+      if (response.status === 200) {
+        setContact((prev) => ({
+          ...prev,
+          sending: false,
+          sentForm: true
+        }));
+        return;
+      }
+    } catch (error) {
+      // Form remains on page and can be retried if request fails.
+    }
 
-	onResolved = async () => {
-		const {name, email, message} = this.state.contact;
-		const recaptchaRef = this.recaptcha.current;
-		if (!recaptchaRef) {
-			this.disableButton(false);
-			return;
-		}
-		try {
-			const token = await recaptchaRef.executeAsync();
-			recaptchaRef.reset();
-			const res = await axios.post(`${config.SERVER_URI}/api/mail/send`, {token, name, email, message});
-			if (res.status === 200) {
-				this.setState(state => ({
-					contact: {
-						...state.contact,
-						sending: false,
-						sentForm: true
-					}
-				}));
-			}
-			else {
-				this.disableButton(false);
-			}
-		} catch (err) {
-			this.disableButton(false);
-		}
-	};
-	
-	render() {
-		return(
-			<div>
-				<div className="home-img-1 text-center">
-					<h2 className="centered">Programmer With <Link to="/projects" className="highlight">{this.state.changingText[this.state.textID]}</Link></h2>
-				</div>
-				<div className="container-fluid">
-					<section className="row" style={{padding: "90px 0"}}>
-						<div className="col-12 col-md-8 mx-auto">
-						<h2 className="col-12 text-center mb-3">About Me</h2>
-							<div className="row">
-								<div className="col-6 col-sm-5 col-lg-4 col-xl-3 col-xxl-2 mx-auto mb-3 mb-md-0">
-									<img className="img-fluid img-thumbnail shadow" src={self_portrait} alt="Alex Spalvieri" />
-								</div>
-								<div className="col-12 col-md-7 col-lg-8 col-xl-9 col-xxl-10">
-									<p>
-										My name is Alex Spalvieri and I've been programming for most of my life. 
-										Starting with video game programming, I went from text adventures to 2D and 3D game development. 
-										Later, I went onto front-end and back-end web development. I attended Georgian College, and majored
-										in Interactive Media Design, where I learned to use old and new technologies for creating websites.
-										The program started with HTML, CSS, PHP, and MySQL. Later, it switched to Node.js, Express, React,
-										and MongoDB. I enjoy back-end development, as well as working on fun and interactive projects.
-									</p>
-								</div>
-							</div>
-						</div>
-					</section>
-					<section className="row" style={{padding: "90px 0"}}>
-						<div className="col-12 text-center mx-auto">
-							<h2>Projects</h2>
-							<p>
-								Some of my projects can be viewed on the <Link to="/projects">projects</Link> page.<br/>
-								All of my projects can be viewed on my <a target="_blank" rel="noopener noreferrer" href="https://github.com/aspalvieri">github</a> profile.
-							</p>
-						</div>
-					</section>
-					<section className="row" style={{padding: "90px 0"}}>
-						<div className="col-12 col-md-8 text-center mx-auto">
-							<h2 className="mb-4">Contact Me</h2>
-							{!this.state.contact.sentForm ?
-							<form noValidate onSubmit={this.handleSubmit}>
-								<div className="mb-3 col-5 col-xxl-3 px-3 d-inline-block">
-									<label htmlFor="name" className="form-label">Name</label>
-									<input type="text" maxLength={32} className={classNames("form-control", {"is-invalid": !this.state.contact.nameValid})} id="name" onChange={this.onChange} value={this.state.contact.name} />
-								</div>
-								<div className="mb-3 col-5 col-xxl-3 px-3 d-inline-block">
-									<label htmlFor="email" className="form-label">Email</label>
-									<input type="email" maxLength={128} className={classNames("form-control", {"is-invalid": !this.state.contact.emailValid})} id="email" onChange={this.onChange} value={this.state.contact.email} />
-								</div>
-								<div className="mb-1 col-10 col-xxl-6 px-3 d-block mx-auto">
-									<label htmlFor="message" className="form-label">Message</label>
-									<textarea maxLength={1000} className={classNames("form-control", {"is-invalid": !this.state.contact.messageValid})} id="message" rows={3} onChange={this.onChange} value={this.state.contact.message} />
-								</div>
-								<div className="small fw-light text-muted mb-2">
-									This site is protected by reCAPTCHA and the Google&nbsp;
-									<a href="https://policies.google.com/privacy">Privacy Policy</a> and&nbsp;
-									<a href="https://policies.google.com/terms">Terms of Service</a> apply.
-								</div>
-								<button type="submit" className={classNames("mt-3 btn btn-primary col-3", {"disabled": this.state.contact.sending})}>Submit form</button>
-								<ReCAPTCHA
-									ref={this.recaptcha}
-									sitekey={this.SITE_KEY}
-									size="invisible" />
-							</form>
-							: <p>
-								Your message has successfully been sent!
-							</p>}
-						</div>
-					</section>
-				</div>
-			</div>
-		);
-	}
+    setContact((prev) => ({ ...prev, sending: false }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setContact((prev) => ({ ...prev, sending: true }));
+
+    const { name, email, message } = contact;
+    let invalid = false;
+
+    if (name === "" || name.length > 32) {
+      updateValid("name", false);
+      invalid = true;
+    }
+    if (email === "" || email.length > 128 || !email.includes("@") || !email.includes(".")) {
+      updateValid("email", false);
+      invalid = true;
+    }
+    if (message === "" || message.length > 1000) {
+      updateValid("message", false);
+      invalid = true;
+    }
+
+    if (invalid) {
+      setContact((prev) => ({ ...prev, sending: false }));
+      return;
+    }
+
+    await onResolved();
+  };
+
+  return (
+    <div className="page-shell home-shell">
+      <section className="hero">
+        <p className="eyebrow">Alex Spalvieri</p>
+        <h1>
+          Programmer with{" "}
+          <Link to="/projects" className="hero-highlight">
+            {ROTATING_WORDS[textIndex]}
+          </Link>
+        </h1>
+        <p className="subtitle">
+          I build reliable web applications and interactive software with a practical, product-first
+          engineering mindset.
+        </p>
+        <div className="hero-actions">
+          <Link to="/projects" className="btn-primary-solid">
+            View Projects
+          </Link>
+          <a
+            href="#contact-section"
+            className="btn-secondary-outline"
+            onClick={(event) => {
+              event.preventDefault();
+              const section = document.getElementById("contact-section");
+              if (section) {
+                const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                section.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+              }
+            }}
+          >
+            Contact Me
+          </a>
+        </div>
+      </section>
+
+      <section className="home-about">
+        <div className="portrait-wrap">
+          <img src={selfPortrait} alt="Portrait of Alex Spalvieri" />
+        </div>
+        <div>
+          <p className="eyebrow">About Me</p>
+          <h2>Building software from game systems to full-stack web products</h2>
+          <p>
+            My name is Alex Spalvieri, and I have been programming for most of my life. I started with
+            game development, from text adventures to 2D and 3D projects, then moved into front-end and
+            back-end web development.
+          </p>
+          <p>
+            I studied Interactive Media Design at Georgian College, where I worked across both legacy and
+            modern technologies. The program started with HTML, CSS, PHP, and MySQL, and later expanded
+            into Node.js, Express, React, and MongoDB. I enjoy back-end development and shipping
+            interactive products end-to-end.
+          </p>
+        </div>
+      </section>
+
+      <section className="featured-projects">
+        <div className="section-header">
+          <p className="eyebrow">Featured Work</p>
+          <h2>Selected projects</h2>
+        </div>
+        <div className="projects-grid">
+          {featuredProjects.map((project) => (
+            <article key={project.slug} className="project-card compact-card">
+              <img src={project.image} alt={`Screenshot from ${project.title}`} />
+              <div className="project-card-body">
+                <p className="project-category">{project.category}</p>
+                <h3>{project.title}</h3>
+                <p>{project.headline}</p>
+                <Link to={`/projects/${project.slug}`} className="text-link">
+                  View details <i className="fas fa-arrow-right" aria-hidden="true"></i>
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="contact-section" id="contact-section">
+        <div className="section-header">
+          <p className="eyebrow">Contact</p>
+          <h2>Let&apos;s connect</h2>
+          <p className="subtitle">If my work aligns with your team&apos;s needs, I&apos;d love to talk.</p>
+        </div>
+
+        {!contact.sentForm ? (
+          <form noValidate onSubmit={handleSubmit} className="contact-form">
+            <div className="contact-grid">
+              <div>
+                <label htmlFor="name" className="form-label">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  maxLength={32}
+                  onChange={onChange}
+                  value={contact.name}
+                  className={classNames("form-control", { "is-invalid": !contact.nameValid })}
+                  autoComplete="name"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="form-label">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  maxLength={128}
+                  onChange={onChange}
+                  value={contact.email}
+                  className={classNames("form-control", { "is-invalid": !contact.emailValid })}
+                  autoComplete="email"
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="message" className="form-label">
+                Message
+              </label>
+              <textarea
+                id="message"
+                rows={5}
+                maxLength={1000}
+                onChange={onChange}
+                value={contact.message}
+                className={classNames("form-control", { "is-invalid": !contact.messageValid })}
+              />
+            </div>
+            <p className="recaptcha-note">
+              This site is protected by reCAPTCHA and the Google{" "}
+              <a href="https://policies.google.com/privacy">Privacy Policy</a> and{" "}
+              <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+            </p>
+            <button
+              type="submit"
+              className={classNames("btn-primary-solid contact-submit", { disabled: contact.sending })}
+              disabled={contact.sending}
+            >
+              {contact.sending ? "Sending..." : "Submit Message"}
+            </button>
+            <ReCAPTCHA ref={recaptcha} sitekey={config.RECAPTCHA_SITE_KEY} size="invisible" />
+          </form>
+        ) : (
+          <div className="contact-success" role="status" aria-live="polite">
+            <h3>Message sent successfully.</h3>
+            <p>Thanks for reaching out. I&apos;ll respond as soon as possible.</p>
+          </div>
+        )}
+      </section>
+    </div>
+  );
 }
 
 export default Home;

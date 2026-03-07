@@ -1,116 +1,89 @@
-import React, { Component } from "react";
-import classnames from "classnames";
+import { useMemo, useState } from "react";
+import classNames from "classnames";
 
 const imageModules = import.meta.glob("../../assets/**/*.webp", {
   eager: true,
   import: "default"
 });
 
-class Slideshow extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ...this.props.values,
-      modalDisplay: "none",
-      modalImage: "",
-      current: 1
-    }
-  }
+function Slideshow({ values }) {
+  const [current, setCurrent] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  getImage = (index) => {
-    const imagePath = `../../assets/${this.state.folder}/${index}.webp`;
-    return imageModules[imagePath] || "";
-  }
-
-  buildSlideshow = () => {
-    let rows = [], key = 0;
-    //Add each slide to the slideshow
-    for (let i = 0; i < this.state.size; i++) {
-      rows.push(
-        <div key={key++} className="slide" style={{display: ((i+1) === this.state.current ? "inline-block" : "none")}}>
-          <img onClick={this.openModal} src={this.getImage(i + 1)} alt=""/>
-        </div>
-      );
+  const images = useMemo(() => {
+    const rows = [];
+    for (let i = 1; i <= values.size; i += 1) {
+      const imagePath = `../../assets/${values.folder}/${i}.webp`;
+      rows.push(imageModules[imagePath] || "");
     }
-    //Add navigation buttons
-    rows.push(<br key={key++}/>);
-    rows.push(
-      <button key={key++} onClick={this.prevSlide} className="slidebutton slidebutton-nav">
-        <i className="fas fa-arrow-left"></i>
-      </button>
-    );
-    for (let i = 0; i < this.state.size; i++) {
-      rows.push(
-        <button key={key++} onClick={this.setSlide} className={classnames("slidebutton", { "button-active": (i+1) === this.state.current })} 
-        data-index={(i+1)}>
-          &nbsp;
-        </button>
-      );
-    }
-    rows.push(
-      <button key={key++} onClick={this.nextSlide} className="slidebutton slidebutton-nav">
-        <i className="fas fa-arrow-right"></i>
-      </button>
-    );
     return rows;
-  }
+  }, [values.folder, values.size]);
 
-  setSlide = (e) => {
-    this.setState({ current: parseInt(e.target.dataset.index) });
-  }
+  const currentImage = images[current - 1];
 
-  nextSlide = (e) => {
-    let current = this.state.current;
-    current = (current + 1 > this.state.size ? 1 : current + 1);
-    this.setState({ current });
-  }
+  const nextSlide = () => {
+    setCurrent((prev) => (prev + 1 > values.size ? 1 : prev + 1));
+  };
 
-  nextSlideModal = (e) => {
-    let current = this.state.current;
-    current = (current + 1 > this.state.size ? 1 : current + 1);
-    this.setState({ current, modalImage: this.getImage(current) });
-  }
+  const prevSlide = () => {
+    setCurrent((prev) => (prev - 1 <= 0 ? values.size : prev - 1));
+  };
 
-  prevSlide = (e) => {
-    let current = this.state.current;
-    current = (current - 1 <= 0 ? this.state.size : current - 1);
-    this.setState({ current });
-  }
-
-  prevSlideModal = (e) => {
-    let current = this.state.current;
-    current = (current - 1 <= 0 ? this.state.size : current - 1);
-    this.setState({ current, modalImage: this.getImage(current) });
-  }
-
-  openModal = (e) => {
-    this.setState({
-      modalDisplay: "block",
-      modalImage: e.target.src
-    });
-  }
-
-  closeModal = (e) => {
-    this.setState({ modalDisplay: "none" });
-  }
-
-  render() {
-    return (
-      <div>
-        <div className="slideshow">
-          {this.buildSlideshow()}
+  return (
+    <div>
+      <div className="slideshow">
+        <div className="slide">
+          <img
+            onClick={() => setIsModalOpen(true)}
+            src={currentImage}
+            alt={`Project screenshot ${current} of ${values.size}`}
+          />
         </div>
-        <div className="sh-modal" style={{display: this.state.modalDisplay}}>
-          <img onClick={this.closeModal} className="sh-modal-content" src={this.state.modalImage} alt="" />
-          <span onClick={this.closeModal} className="close">&times;</span>
-          <div>
-            <button onClick={this.prevSlideModal} className="slidebutton slidebutton-nav"><i style={{fontSize: "24px"}} className="fas fa-arrow-left"></i></button>
-            <button onClick={this.nextSlideModal} className="slidebutton slidebutton-nav"><i style={{fontSize: "24px"}} className="fas fa-arrow-right"></i></button>
-          </div>
+
+        <div className="slide-controls">
+          <button type="button" onClick={prevSlide} className="slidebutton slidebutton-nav" aria-label="Previous slide">
+            <i className="fas fa-arrow-left" aria-hidden="true"></i>
+          </button>
+
+          {images.map((_, index) => (
+            <button
+              type="button"
+              key={`slide-${index + 1}`}
+              onClick={() => setCurrent(index + 1)}
+              className={classNames("slidebutton", { "button-active": current === index + 1 })}
+              aria-label={`Go to slide ${index + 1}`}
+            >
+              <span className="visually-hidden">Slide {index + 1}</span>
+            </button>
+          ))}
+
+          <button type="button" onClick={nextSlide} className="slidebutton slidebutton-nav" aria-label="Next slide">
+            <i className="fas fa-arrow-right" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
-    );
-  }
+
+      <div className={classNames("sh-modal", { "is-open": isModalOpen })}>
+        <img
+          onClick={() => setIsModalOpen(false)}
+          className="sh-modal-content"
+          src={currentImage}
+          alt={`Zoomed project screenshot ${current} of ${values.size}`}
+        />
+        <button type="button" onClick={() => setIsModalOpen(false)} className="close" aria-label="Close image preview">
+          &times;
+        </button>
+        <div>
+          <button type="button" onClick={prevSlide} className="slidebutton slidebutton-nav" aria-label="Previous slide">
+            <i className="fas fa-arrow-left" aria-hidden="true"></i>
+          </button>
+          <button type="button" onClick={nextSlide} className="slidebutton slidebutton-nav" aria-label="Next slide">
+            <i className="fas fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Slideshow;

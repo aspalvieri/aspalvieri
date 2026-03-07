@@ -1,38 +1,69 @@
-import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-class Navigation extends Component {
-	getNavClass = ({ isActive }) => `nav-link${isActive ? " nav-link-active" : ""}`;
+function Navigation() {
+  const getNavClass = ({ isActive }) => `site-nav-link${isActive ? " is-active" : ""}`;
 
-	render() {
-		return (
-			<nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-				<Link className="nav-link nav-logo" to="/"></Link>
-				<Link className="navbar-brand" to="/">Alex Spalvieri</Link>
-				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
-					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span className="navbar-toggler-icon" />
-				</button>
-				<div className="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul className="navbar-nav mr-auto">
-						<li className="nav-item">
-							<NavLink className={this.getNavClass} to="/" end>Home</NavLink>
-						</li>
-						<li className="nav-item">
-							<NavLink className={this.getNavClass} to="/projects">Projects</NavLink>
-						</li>
-						<li className="nav-item">
-							<NavLink className={this.getNavClass} to="/apis">APIs</NavLink>
-						</li>
-						<li className="nav-item mobile-icons">
-							<a target="_blank" href="https://www.linkedin.com/in/alex-spalvieri/" className="fab fa-linkedin" rel="noopener noreferrer"> </a>
-							<a target="_blank" href="https://github.com/aspalvieri" className="fab fa-github" rel="noopener noreferrer"> </a>
-						</li>
-					</ul>
-				</div>
-			</nav>
-		);
-	}
+  return (
+    <header className="site-header">
+      <nav className="navbar navbar-expand-lg site-navbar" aria-label="Primary">
+        <div className="container-fluid site-navbar-inner">
+          <Link className="brand-lockup" to="/">
+            <span className="brand-mark" aria-hidden="true"></span>
+            <span className="brand-name">Alex Spalvieri</span>
+          </Link>
+
+          <button
+            className="navbar-toggler site-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="site-nav-list">
+              <li>
+                <NavLink className={getNavClass} to="/" end>
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className={getNavClass} to="/projects">
+                  Projects
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className={getNavClass} to="/apis">
+                  APIs
+                </NavLink>
+              </li>
+            </ul>
+
+            <div className="site-social-links" aria-label="Social links">
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/in/alex-spalvieri/"
+                className="fab fa-linkedin"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn profile"
+              ></a>
+              <a
+                target="_blank"
+                href="https://github.com/aspalvieri"
+                className="fab fa-github"
+                rel="noopener noreferrer"
+                aria-label="GitHub profile"
+              ></a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+  );
 }
 
 export default Navigation;

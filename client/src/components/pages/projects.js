@@ -1,108 +1,86 @@
-import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import propertyManagerImage from "../../assets/projects/property_manager/2.webp";
-import forgottenSpaceImage from "../../assets/projects/forgotten_space/2.webp";
-import equationGameImage from "../../assets/projects/equation_game/1.webp";
-import cityDefenseImage from "../../assets/projects/city_defense/1.webp";
+import { useMemo, useState } from "react";
+import { projectCategories, projects } from "../../data/projects";
 
-class Projects extends Component {
-	render() {
-		return(
-			<div>
-				<header>
-					<h1 style={{textAlign: "center"}}>Projects</h1>
-				</header>
-				<div className="container-fluid">
-					<section className="row py-5">
-						<div className="col-12 col-sm-6 col-md-5 order-2 order-sm-1 ms-auto">
-							<h2>Property Manager</h2>
-							<p className="mb-1">
-								Property managing application for property managers and landlords. The manager can create, update, view, and delete
-								properties. Within each property, the manager is able to create, update, view, and delete units. This tool is useful
-								for keeping trach of which units belong to which properties.
-							</p>
-							<p><small><code style={{wordWrap: "normal"}}>Node&nbsp;&nbsp;Express&nbsp;&nbsp;MongoDB&nbsp;&nbsp;React&nbsp;&nbsp;Redux</code></small></p>
-							<Link to="/projects/property_manager" className="btn btn-primary btn-lg me-4">View Project</Link>
-							<a target="_blank" className="btn btn-dark" rel="noopener noreferrer" href="https://github.com/aspalvieri/PropertyManager">
-								<i className="fab fa-github"></i> View on GitHub
-							</a>
-						</div>
-						<div className="col-8 col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-1 order-sm-2 mb-4 mb-sm-0 mx-auto mx-sm-0 me-sm-auto">
-							<img className="img-thumbnail shadow" src={propertyManagerImage} alt="Example of Property Manager" />
-						</div>
-					</section>
-					<section className="row py-5">
-						<div className="col-12 col-sm-6 col-md-5 order-2 order-sm-1 ms-auto">
-							<h2>Ruins of Forgotten Space</h2>
-							<p className="mb-1">
-								Top-down dungeon crawler set in the future. Travel to different planets and explore the randomly generated
-								maps. Gather resources to upgrade your armor and weapons. Defeat enemies to level-up your character, and
-								gain increasingly stronger spells to help you venture into more dangerous planets. Unlock more of your spaceship
-								as you progress through the game.
-							</p>
-							<p><small><code style={{wordWrap: "normal"}}>C++&nbsp;&nbsp;SDL2</code></small></p>
-							<Link to="/projects/forgotten_space" className="btn btn-primary btn-lg me-4">View Project</Link>
-							<a target="_blank" className="btn btn-dark" rel="noopener noreferrer" href="https://github.com/aspalvieri/ForgottenSpace">
-								<i className="fab fa-github"></i> View on GitHub
-							</a>
-						</div>
-						<div className="col-8 col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-1 order-sm-2 mb-4 mb-sm-0 mx-auto mx-sm-0 me-sm-auto">
-							<img className="img-thumbnail shadow" src={forgottenSpaceImage} alt="Example of Ruins of Forgotten Space" />
-						</div>
-					</section>
-					<section className="row py-5">
-						<div className="col-12 col-sm-6 col-md-5 order-2 order-sm-1 ms-auto">
-							<h2>Random Equation Game</h2>
-							<p className="mb-1">
-								Fun little JavaScript number game. Choose a number range from 1 - 999 and select which operations are allowed (addition,
-								subtraction, multiplication, division). The game will randomize two numbers and an operation. You input the answer, and if
-								it's correct, you'll gain 1 point. You lose 1 point if the answer was wrong. The game will record all equations, inputs,
-								answers, and if the input was correct or not.
-							</p>
-							<p><small><code style={{wordWrap: "normal"}}>JavaScript</code></small></p>
-							<Link to="/projects/equation_game" className="btn btn-primary btn-lg me-4">View Project</Link>
-							<a target="_blank" className="btn btn-dark" rel="noopener noreferrer" href="https://github.com/aspalvieri/RandomEquationGame">
-								<i className="fab fa-github"></i> View on GitHub
-							</a>
-						</div>
-						<div className="col-8 col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-1 order-sm-2 mb-4 mb-sm-0 mx-auto mx-sm-0 me-sm-auto">
-							<img className="img-thumbnail shadow" src={equationGameImage} alt="Example of Random Equation Game" />
-						</div>
-					</section>
-					<section className="row py-5">
-						<div className="col-12 col-sm-6 col-md-5 order-2 order-sm-1 ms-auto">
-							<h2>City Defense</h2>
-							<p className="mb-1">
-								City management simulator mixed with a tower defense. Start off with only a handful of resources and a randomly
-								generated map. Build farms and generators to slowly get the city flowing. After some time, the locals of the planet
-								will try to remove the city you've built up. Make towers and walls to defend your city, while researching
-								new technologies to assist with the defense and growth of your city.
-							</p>
-							<p><small><code style={{wordWrap: "normal"}}>C++&nbsp;&nbsp;SDL2</code></small></p>
-							<Link to="/projects/city_defense" className="btn btn-primary btn-lg me-4">View Project</Link>
-							<a target="_blank" className="btn btn-dark" rel="noopener noreferrer" href="https://github.com/aspalvieri/CityDefense">
-								<i className="fab fa-github"></i> View on GitHub
-							</a>
-						</div>
-						<div className="col-8 col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-1 order-sm-2 mb-4 mb-sm-0 mx-auto mx-sm-0 me-sm-auto">
-							<img className="img-thumbnail shadow" src={cityDefenseImage} alt="Example of City Defense" />
-						</div>
-					</section>
-					<section className="row py-5">
-						<div className="col-12 text-center">
-							<h2>More Projects</h2>
-							<p>
-								To see all of my projects, please visit my
-								<a target="_blank" className="btn btn-sm btn-dark" style={{marginLeft: "10px"}} rel="noopener noreferrer" href="https://github.com/aspalvieri">
-									<i className="fab fa-github"></i> GitHub
-								</a>
-							</p>
-						</div>
-					</section>
-				</div>
-			</div>
-		);
-	}
+function Projects() {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const filteredProjects = useMemo(() => {
+    if (selectedCategory === "All") {
+      return projects;
+    }
+    return projects.filter((project) => project.category === selectedCategory);
+  }, [selectedCategory]);
+
+  return (
+    <div className="page-shell">
+      <section className="page-heading">
+        <p className="eyebrow">Project Portfolio</p>
+        <h1>Projects</h1>
+        <p className="subtitle">
+          End-to-end work across web applications and game development, with emphasis on clear
+          architecture and reliable execution.
+        </p>
+      </section>
+
+      <section className="projects-filter-bar" aria-label="Project category filters">
+        {projectCategories.map((category) => (
+          <button
+            type="button"
+            key={category}
+            className={`pill-filter${selectedCategory === category ? " is-active" : ""}`}
+            onClick={() => setSelectedCategory(category)}
+          >
+            {category}
+          </button>
+        ))}
+      </section>
+
+      <section className="projects-grid" aria-label="Project cards">
+        {filteredProjects.map((project) => (
+          <article key={project.slug} className="project-card">
+            <img src={project.image} alt={`Screenshot from ${project.title}`} />
+            <div className="project-card-body">
+              <p className="project-category">{project.category}</p>
+              <h2>{project.title}</h2>
+              <p>{project.summary}</p>
+              <ul className="tag-list">
+                {project.tech.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <div className="project-card-actions">
+                <Link to={`/projects/${project.slug}`} className="btn-primary-solid">
+                  View Project
+                </Link>
+                <a
+                  target="_blank"
+                  className="btn-secondary-outline"
+                  rel="noopener noreferrer"
+                  href={project.githubUrl}
+                >
+                  <i className="fab fa-github" aria-hidden="true"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section className="more-projects-block">
+        <h2>More Projects</h2>
+        <p>Explore additional repositories and experiments on my GitHub profile.</p>
+        <a
+          target="_blank"
+          className="btn-primary-solid"
+          rel="noopener noreferrer"
+          href="https://github.com/aspalvieri"
+        >
+          <i className="fab fa-github" aria-hidden="true"></i> Visit GitHub
+        </a>
+      </section>
+    </div>
+  );
 }
 
 export default Projects;

@@ -1,116 +1,137 @@
-import React, { Component } from "react";
-import Axios from "axios";
+import { useMemo, useState } from "react";
+import axios from "axios";
 import { config } from "../../utils/config";
 
-class APIs extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			array: [],
-			array_vars: {
-				min_arr: 5,
-				max_arr: 10,
-				min_val: 1,
-				max_val: 100
-			}
-		}
-	}
+function APIs() {
+  const [array, setArray] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [arrayVars, setArrayVars] = useState({
+    min_arr: 5,
+    max_arr: 10,
+    min_val: 1,
+    max_val: 100
+  });
 
-	fetchRandomArray = () => {
-		let { min_arr, max_arr, min_val, max_val } = this.state.array_vars;
-		Axios.get(`${config.SERVER_URI}/api/test/random_array?min_arr=${min_arr}&max_arr=${max_arr}&min_val=${min_val}&max_val=${max_val}`)
-			.then(res => this.setState({ array: res.data }))
-			.catch(err => console.log(err));
-	}
+  const endpoint = useMemo(
+    () =>
+      `${config.SERVER_URI}/api/test/random_array?min_arr=${arrayVars.min_arr}&max_arr=${arrayVars.max_arr}&min_val=${arrayVars.min_val}&max_val=${arrayVars.max_val}`,
+    [arrayVars]
+  );
 
-	onChange = e => {
-    this.setState(state => ({
-			array_vars: {
-				...state.array_vars,
-				[e.target.id]: e.target.value 
-			}
-		}));
+  const onChange = (event) => {
+    const { id, value } = event.target;
+    setArrayVars((prev) => ({
+      ...prev,
+      [id]: value
+    }));
   };
 
-	render() {
-		return(
-			<div>
-				<header>
-					<h1 style={{textAlign: "center"}}>List of APIs</h1>
-				</header>
-				<div className="container-fluid">
-					<section className="row">
-						<div className="col-12 col-md-8 mx-auto">
-							<p style={{textAlign: "left"}} className="mb-3">
-								<a target="_blank" rel="noopener noreferrer" href={`${config.SERVER_URI}/api/test/random_array`}>Random Array API</a><br/>
-								Returns a randomly sized array, filled with random integers.<br/>
-								<button type="button" className="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#paramModal">
-									<i className="fas fa-info-circle"></i> View Details</button>
-							</p>
-							<div>
-								<div className="modal fade" id="paramModal" tabIndex="-1" aria-labelledby="paramModalLabel" aria-hidden="true">
-									<div className="modal-dialog">
-										<div className="modal-content">
-											<div className="modal-header">
-												<h5 className="modal-title" id="paramModalLabel"><b>GET:</b> /api/test/random_array</h5>
-												<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-											</div>
-											<div className="modal-body">
-												<small><b>Parameters:</b></small><br/>
-												<code>min_arr</code> <b>:</b> Minimum size of the array, default: 5<br/>
-												<code>max_arr</code> <b>:</b> Maximum size of the array, default: 10<br/>
-												<code>min_val</code> <b>:</b> Minimum random integer, default: 1<br/>
-												<code>max_val</code> <b>:</b> Maximum random integer, default: 100<br/>
-											</div>
-											<div className="modal-footer">
-												<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div>
-								<small><b>Parameters:</b></small><br/>
-								<div className="input-group mb-1">
-									<span className="input-group-text" id="basic-addon1">Minimum array length</span>
-									<input type="number" className="form-control" id="min_arr" onChange={this.onChange} value={this.state.array_vars.min_arr} />
-								</div>
-								<div className="input-group mb-1">
-									<span className="input-group-text" id="basic-addon1">Maximum array length</span>
-									<input type="number" className="form-control" id="max_arr" onChange={this.onChange} value={this.state.array_vars.max_arr} />
-								</div>
-								<div className="input-group mb-1">
-									<span className="input-group-text" id="basic-addon1">Minimum value</span>
-									<input type="number" className="form-control" id="min_val" onChange={this.onChange} value={this.state.array_vars.min_val} />
-								</div>
-								<div className="input-group mb-1">
-									<span className="input-group-text" id="basic-addon1">Maximum value</span>
-									<input type="number" className="form-control" id="max_val" onChange={this.onChange} value={this.state.array_vars.max_val} />
-								</div>
-								<button className="btn btn-primary" style={{ margin: "5px 0" }} onClick={this.fetchRandomArray}>
-									<i className="fas fa-paper-plane"></i> Fetch Array</button> 
-								<br/>
-								<table className="table table-sm table-striped">
-									<thead>
-										<tr>
-											<th>Array (size of {this.state.array.length})</th>
-										</tr>
-									</thead>
-									<tbody>
-										{this.state.array.map((arr, i) => (
-											<tr key={i}>
-												<td><span style={{color: "rgb(175,175,175)"}}>{i+1}:</span> {arr}</td>
-											</tr>
-										))}
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</section>
-				</div>
-			</div>
-		);
-	}
+  const fetchRandomArray = async () => {
+    setLoading(true);
+    setErrorMessage("");
+    try {
+      const response = await axios.get(endpoint);
+      setArray(Array.isArray(response.data) ? response.data : []);
+    } catch (error) {
+      setErrorMessage("Unable to fetch data right now. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="page-shell">
+      <section className="page-heading">
+        <p className="eyebrow">Developer Playground</p>
+        <h1>API Sandbox</h1>
+        <p className="subtitle">
+          Interactive test interface for the Random Array API endpoint with adjustable query parameters.
+        </p>
+      </section>
+
+      <section className="api-layout">
+        <article className="api-card">
+          <h2>Endpoint</h2>
+          <a target="_blank" rel="noopener noreferrer" href={`${config.SERVER_URI}/api/test/random_array`}>
+            {config.SERVER_URI}/api/test/random_array
+          </a>
+          <p>Returns a randomly sized array filled with random integers.</p>
+          <div className="api-details">
+            <p>
+              <strong>Method:</strong> <code>GET</code>
+            </p>
+            <p>
+              <strong>Parameters:</strong> <code>min_arr</code>, <code>max_arr</code>, <code>min_val</code>,{" "}
+              <code>max_val</code>
+            </p>
+          </div>
+        </article>
+
+        <article className="api-card">
+          <h2>Query Builder</h2>
+          <div className="field-grid">
+            <label htmlFor="min_arr">
+              Minimum array length
+              <input type="number" className="form-control" id="min_arr" onChange={onChange} value={arrayVars.min_arr} />
+            </label>
+            <label htmlFor="max_arr">
+              Maximum array length
+              <input type="number" className="form-control" id="max_arr" onChange={onChange} value={arrayVars.max_arr} />
+            </label>
+            <label htmlFor="min_val">
+              Minimum value
+              <input type="number" className="form-control" id="min_val" onChange={onChange} value={arrayVars.min_val} />
+            </label>
+            <label htmlFor="max_val">
+              Maximum value
+              <input type="number" className="form-control" id="max_val" onChange={onChange} value={arrayVars.max_val} />
+            </label>
+          </div>
+          <p className="request-preview">
+            <strong>Request:</strong> <code>{endpoint}</code>
+          </p>
+          <button className="btn-primary-solid" onClick={fetchRandomArray} disabled={loading}>
+            {loading ? "Fetching..." : "Fetch Array"}
+          </button>
+          {errorMessage && (
+            <p className="api-error" role="alert">
+              {errorMessage}
+            </p>
+          )}
+        </article>
+      </section>
+
+      <section className="api-results">
+        <h2>Response</h2>
+        <p>Array size: {array.length}</p>
+        <div className="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {array.length === 0 ? (
+                <tr>
+                  <td colSpan={2}>No data fetched yet.</td>
+                </tr>
+              ) : (
+                array.map((value, index) => (
+                  <tr key={`${index}-${value}`}>
+                    <td>{index + 1}</td>
+                    <td>{value}</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  );
 }
 
 export default APIs;
