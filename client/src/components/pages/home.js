@@ -24,6 +24,7 @@ function Home() {
   });
 
   const featuredProjects = useMemo(() => projects.slice(0, 3), []);
+  const projectCount = projects.length;
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -114,36 +115,77 @@ function Home() {
 
   return (
     <div className="page-shell home-shell">
-      <section className="hero">
-        <p className="eyebrow">Alex Spalvieri</p>
-        <h1>
-          Programmer with{" "}
-          <Link to="/projects" className="hero-highlight">
-            {ROTATING_WORDS[textIndex]}
-          </Link>
-        </h1>
-        <p className="subtitle">
-          I build reliable web applications and interactive software with a practical, product-first
-          engineering mindset.
-        </p>
-        <div className="hero-actions">
-          <Link to="/projects" className="btn-primary-solid">
-            View Projects
-          </Link>
-          <a
-            href="#contact-section"
-            className="btn-secondary-outline"
-            onClick={(event) => {
-              event.preventDefault();
-              const section = document.getElementById("contact-section");
-              if (section) {
-                const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-                section.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
-              }
-            }}
-          >
-            Contact Me
-          </a>
+      <section className="hero landing-card">
+        <div className="landing-card-grid">
+          <div className="landing-main">
+            <p className="eyebrow">Alex Spalvieri</p>
+            <h1>
+              Programmer with{" "}
+              <Link to="/projects" className="hero-highlight">
+                <span key={ROTATING_WORDS[textIndex]} className="hero-rotating-word">
+                  {ROTATING_WORDS[textIndex]}
+                </span>
+              </Link>
+            </h1>
+            <p className="subtitle">
+              I build dependable web applications and interactive software with a product-focused,
+              end-to-end engineering approach.
+            </p>
+            <ul className="landing-pill-list" aria-label="Core strengths">
+              <li>Full-stack delivery</li>
+              <li>Game + web engineering</li>
+              <li>Product-minded execution</li>
+            </ul>
+            <div className="hero-actions">
+              <Link to="/projects" className="btn-primary-solid">
+                View Projects
+              </Link>
+              <a
+                href="#contact-section"
+                className="btn-secondary-outline"
+                onClick={(event) => {
+                  event.preventDefault();
+                  const section = document.getElementById("contact-section");
+                  if (section) {
+                    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                    section.scrollIntoView({
+                      behavior: reduceMotion ? "auto" : "smooth",
+                      block: "start"
+                    });
+                  }
+                }}
+              >
+                Contact Me
+              </a>
+            </div>
+          </div>
+
+          <aside className="landing-panel" aria-label="Profile summary">
+            <p className="landing-panel-kicker">At A Glance</p>
+            <h2>Shipping practical products from concept through launch.</h2>
+            <div className="landing-metric-grid">
+              <article>
+                <p className="metric-value">{projectCount}+</p>
+                <p className="metric-label">Portfolio projects</p>
+              </article>
+              <article>
+                <p className="metric-value">Node + React</p>
+                <p className="metric-label">Primary stack</p>
+              </article>
+              <article>
+                <p className="metric-value">End-to-end</p>
+                <p className="metric-label">Build ownership</p>
+              </article>
+            </div>
+            <Link to="/apis" className="btn-secondary-outline landing-panel-cta">
+              Explore API Playground
+            </Link>
+          </aside>
+        </div>
+        <div className="landing-glow" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       </section>
 
@@ -155,15 +197,14 @@ function Home() {
           <p className="eyebrow">About Me</p>
           <h2>Building software from game systems to full-stack web products</h2>
           <p>
-            My name is Alex Spalvieri, and I have been programming for most of my life. I started with
-            game development, from text adventures to 2D and 3D projects, then moved into front-end and
-            back-end web development.
+            I have been programming for most of my life. I started in game development, from text
+            adventures to 2D and 3D projects, and later expanded into front-end and back-end web
+            development.
           </p>
           <p>
-            I studied Interactive Media Design at Georgian College, where I worked across both legacy and
-            modern technologies. The program started with HTML, CSS, PHP, and MySQL, and later expanded
-            into Node.js, Express, React, and MongoDB. I enjoy back-end development and shipping
-            interactive products end-to-end.
+            I studied Interactive Media Design at Georgian College, working across both foundational and
+            modern stacks. The program began with HTML, CSS, PHP, and MySQL, then expanded into Node.js,
+            Express, React, and MongoDB. I enjoy building practical products from concept through launch.
           </p>
         </div>
       </section>
@@ -194,7 +235,7 @@ function Home() {
         <div className="section-header">
           <p className="eyebrow">Contact</p>
           <h2>Let&apos;s connect</h2>
-          <p className="subtitle">If my work aligns with your team&apos;s needs, I&apos;d love to talk.</p>
+          <p className="subtitle">If my work aligns with your goals, I&apos;d be glad to connect.</p>
         </div>
 
         {!contact.sentForm ? (

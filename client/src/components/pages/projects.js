@@ -18,8 +18,8 @@ function Projects() {
         <p className="eyebrow">Project Portfolio</p>
         <h1>Projects</h1>
         <p className="subtitle">
-          End-to-end work across web applications and game development, with emphasis on clear
-          architecture and reliable execution.
+          End-to-end work across web applications and game development, with an emphasis on clear
+          architecture, maintainable code, and reliable execution.
         </p>
       </section>
 
@@ -69,7 +69,7 @@ function Projects() {
 
       <section className="more-projects-block">
         <h2>More Projects</h2>
-        <p>Explore additional repositories and experiments on my GitHub profile.</p>
+        <p>Explore additional repositories, prototypes, and experiments on my GitHub profile.</p>
         <a
           target="_blank"
           className="btn-primary-solid"
