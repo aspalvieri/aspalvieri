@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import classNames from "classnames";
 import axios from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
-import selfPortrait from "../../assets/home/me.png";
+import selfPortrait from "../../assets/home/me.webp";
 import { projects } from "../../data/projects";
 import { config } from "../../utils/config";
 
