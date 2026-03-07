@@ -20,7 +20,6 @@ const defaultConfig = configs[mode] || configs.production;
 
 export const config = {
   ...defaultConfig,
-  SERVER_URI: import.meta.env.VITE_SERVER_URI || defaultConfig.SERVER_URI,
   RECAPTCHA_SITE_KEY:
     import.meta.env.VITE_RECAPTCHA_SITE_KEY || "6LfIexkhAAAAAO3-jubL6T_3W9wNgUsYjI0mL-0b"
 };
