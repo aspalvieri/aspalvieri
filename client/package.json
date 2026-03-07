@@ -24,6 +24,6 @@
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && gcloud app deploy --project plucky-rarity-339004 --quiet"
+    "deploy": "gcloud app deploy --project plucky-rarity-339004 --quiet"
   }
 }
