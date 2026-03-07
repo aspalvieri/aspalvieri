@@ -4,7 +4,7 @@ import self_portrait from "../../assets/home/me.png";
 import classNames from "classnames";
 import axios from "axios";
 import { config } from "../../utils/config";
-import Recaptcha from "react-google-invisible-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha";
 
 class Home extends Component {
 	constructor(props) {
@@ -76,7 +76,7 @@ class Home extends Component {
 		}));
 	}
 
-	handleSubmit = e => {
+	handleSubmit = async (e) => {
 		e.preventDefault();
 		let debounce = false;
 		this.disableButton(true);
@@ -95,22 +95,29 @@ class Home extends Component {
 		}
 
 		if (!debounce) {
-			this.recaptcha.execute();
+			await this.onResolved();
 		}
 		else {
 			this.disableButton(false);
-			this.recaptcha.reset();
 		}
 	};
 
-	onResolved = e => {
+	onResolved = async () => {
 		const {name, email, message} = this.state.contact;
-		const token = this.recaptcha.getResponse();
-		axios.post(`${config.SERVER_URI}/api/mail/send`, {token, name, email, message}).then(res => {
+		const recaptchaRef = this.recaptcha.current;
+		if (!recaptchaRef) {
+			this.disableButton(false);
+			return;
+		}
+		try {
+			const token = await recaptchaRef.executeAsync();
+			recaptchaRef.reset();
+			const res = await axios.post(`${config.SERVER_URI}/api/mail/send`, {token, name, email, message});
 			if (res.status === 200) {
 				this.setState(state => ({
 					contact: {
 						...state.contact,
+						sending: false,
 						sentForm: true
 					}
 				}));
@@ -118,9 +125,9 @@ class Home extends Component {
 			else {
 				this.disableButton(false);
 			}
-		}).catch(err => {
+		} catch (err) {
 			this.disableButton(false);
-		});
+		}
 	};
 	
 	render() {
@@ -182,10 +189,10 @@ class Home extends Component {
 									<a href="https://policies.google.com/terms">Terms of Service</a> apply.
 								</div>
 								<button type="submit" className={classNames("mt-3 btn btn-primary col-3", {"disabled": this.state.contact.sending})}>Submit form</button>
-								<Recaptcha
-									ref={ ref => this.recaptcha = ref }
+								<ReCAPTCHA
+									ref={this.recaptcha}
 									sitekey={this.SITE_KEY}
-									onResolved={this.onResolved} />
+									size="invisible" />
 							</form>
 							: <p>
 								Your message has successfully been sent!

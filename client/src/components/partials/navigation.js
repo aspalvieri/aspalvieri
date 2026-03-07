@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 class Navigation extends Component {
+	getNavClass = ({ isActive }) => `nav-link${isActive ? " nav-link-active" : ""}`;
+
 	render() {
 		return (
 			<nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
@@ -14,16 +16,13 @@ class Navigation extends Component {
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav mr-auto">
 						<li className="nav-item">
-							<NavLink className="nav-link" to="/" exact activeClassName="nav-link-active">Home</NavLink>
+							<NavLink className={this.getNavClass} to="/" end>Home</NavLink>
 						</li>
 						<li className="nav-item">
-							<NavLink className="nav-link" to="/projects" activeClassName="nav-link-active">Projects</NavLink>
+							<NavLink className={this.getNavClass} to="/projects">Projects</NavLink>
 						</li>
 						<li className="nav-item">
-							<NavLink className="nav-link" to="/apis" activeClassName="nav-link-active">APIs</NavLink>
-						</li>
-						<li className="nav-item">
-							<a className="nav-link" target="_blank" rel="noreferrer" href="https://game.aspalvieri.com/">Web Game</a>
+							<NavLink className={this.getNavClass} to="/apis">APIs</NavLink>
 						</li>
 						<li className="nav-item mobile-icons">
 							<a target="_blank" href="https://www.linkedin.com/in/alex-spalvieri/" className="fab fa-linkedin" rel="noopener noreferrer"> </a>

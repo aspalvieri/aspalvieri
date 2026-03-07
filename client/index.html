@@ -1,23 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <script>
-      // Redirect www. to naked
+      // Redirect www. to naked domain.
       if (window.location.host.slice(0, 4) === "www.") {
         window.location.host = window.location.host.slice(4);
       }
     </script>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#000000" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     <title>Alex Spalvieri</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-
-    </script>
+    <script type="module" src="/src/index.js"></script>
   </body>
 </html>

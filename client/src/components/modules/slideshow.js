@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import classnames from "classnames";
 
+const imageModules = import.meta.glob("../../assets/**/*.webp", {
+  eager: true,
+  import: "default"
+});
+
 class Slideshow extends Component {
   constructor(props) {
     super(props);
@@ -12,13 +17,18 @@ class Slideshow extends Component {
     }
   }
 
+  getImage = (index) => {
+    const imagePath = `../../assets/${this.state.folder}/${index}.webp`;
+    return imageModules[imagePath] || "";
+  }
+
   buildSlideshow = () => {
     let rows = [], key = 0;
     //Add each slide to the slideshow
     for (let i = 0; i < this.state.size; i++) {
       rows.push(
         <div key={key++} className="slide" style={{display: ((i+1) === this.state.current ? "inline-block" : "none")}}>
-          <img onClick={this.openModal} src={require(`../../assets/${this.state.folder}/${i+1}.webp`)} alt=""/>
+          <img onClick={this.openModal} src={this.getImage(i + 1)} alt=""/>
         </div>
       );
     }
@@ -58,7 +68,7 @@ class Slideshow extends Component {
   nextSlideModal = (e) => {
     let current = this.state.current;
     current = (current + 1 > this.state.size ? 1 : current + 1);
-    this.setState({ current, modalImage: require(`../../assets/${this.state.folder}/${current}.webp`) });
+    this.setState({ current, modalImage: this.getImage(current) });
   }
 
   prevSlide = (e) => {
@@ -70,7 +80,7 @@ class Slideshow extends Component {
   prevSlideModal = (e) => {
     let current = this.state.current;
     current = (current - 1 <= 0 ? this.state.size : current - 1);
-    this.setState({ current, modalImage: require(`../../assets/${this.state.folder}/${current}.webp`) });
+    this.setState({ current, modalImage: this.getImage(current) });
   }
 
   openModal = (e) => {

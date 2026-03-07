@@ -2,50 +2,61 @@ const nodemailer = require("nodemailer");
 const axios = require("axios");
 
 const SECRET_KEY = process.env.SECRET_KEY;
+const EMAIL_USER = process.env.EMAIL_USER;
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.titan.email',
+  host: "smtp.titan.email",
   port: 587,
   auth: {
-    user: process.env.EMAIL_USER,
+    user: EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD
   }
 });
 
-// verify connection configuration
-transporter.verify(function(error, success) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Server is ready to take our messages");
-  }
+// Verify SMTP configuration at startup for early failure visibility.
+transporter.verify().then(() => {
+  console.log("Mail server is ready to take messages.");
+}).catch((error) => {
+  console.error("Mail server verification failed:", error);
 });
 
-exports.sendMail = (req, res) => {
+exports.sendMail = async (req, res) => {
   const { token, name, email, message } = req.body;
+
+  if (!token || !name || !email || !message) {
+    return res.status(400).json({ status: "Missing required fields." });
+  }
+
   const mail = {
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
-    subject: 'Contact Form Submission',
+    from: EMAIL_USER,
+    to: EMAIL_USER,
+    subject: "Contact Form Submission",
     text: `Name: ${name}\n
 Email: ${email}\n
 Message: ${message}`,
   };
-  const VERIFY_URL = `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${token}`;
-  axios.post(VERIFY_URL).then(cb => {
-    if (cb.data.success === true) {
-      transporter.sendMail(mail, (err, data) => {
-        if (err) {
-          res.status(500).json({ status: err });
-        } else {
-          res.status(200).json({ status: "Message Sent" });
+
+  try {
+    const verification = await axios.post(
+      "https://www.google.com/recaptcha/api/siteverify",
+      null,
+      {
+        params: {
+          secret: SECRET_KEY,
+          response: token
         }
-      });
+      }
+    );
+
+    if (verification?.data?.success !== true) {
+      return res.status(400).json({ status: "Invalid recaptcha code." });
     }
-    else {
-      res.status(500).json({ status: "Invalid recaptcha code." });
-    }
-  }).catch(err => {
-    res.status(500).json({ status: err });
-  });
+
+    await transporter.sendMail(mail);
+
+    return res.status(200).json({ status: "Message Sent" });
+  } catch (error) {
+    console.error("Failed to send contact mail:", error);
+    return res.status(500).json({ status: "Unable to send message." });
+  }
 };

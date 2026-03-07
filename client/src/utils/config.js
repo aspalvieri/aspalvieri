@@ -15,4 +15,10 @@ const configs = {
   },
 };
 
-module.exports.config = configs[process.env.NODE_ENV];
+const mode = import.meta.env.MODE;
+const defaultConfig = configs[mode] || configs.production;
+
+export const config = {
+  ...defaultConfig,
+  SERVER_URI: import.meta.env.VITE_SERVER_URI || defaultConfig.SERVER_URI
+};
