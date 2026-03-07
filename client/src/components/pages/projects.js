@@ -13,8 +13,8 @@ function Projects() {
   }, [selectedCategory]);
 
   return (
-    <div className="page-shell">
-      <section className="page-heading">
+    <div className="page-shell projects-shell">
+      <section className="page-heading projects-hero-card">
         <p className="eyebrow">Project Portfolio</p>
         <h1>Projects</h1>
         <p className="subtitle">

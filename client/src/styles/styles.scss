@@ -232,6 +232,17 @@ p {
   font-size: clamp(2rem, 4.8vw, 3.5rem);
 }
 
+.projects-hero-card {
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  padding: clamp(1rem, 2vw, 1.4rem);
+  background: linear-gradient(160deg, rgba(9, 20, 37, 0.92), rgba(13, 31, 54, 0.82));
+}
+
+.projects-shell {
+  gap: var(--space-lg);
+}
+
 .btn-primary-solid,
 .btn-secondary-outline {
   display: inline-flex;
@@ -676,6 +687,10 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 0.58rem;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  background: var(--surface-1);
+  padding: clamp(0.7rem, 1.6vw, 1rem);
 }
 
 .pill-filter {
