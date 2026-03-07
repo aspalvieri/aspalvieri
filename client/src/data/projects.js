@@ -1,6 +1,8 @@
 import forgottenSpaceImage from "../assets/projects/forgotten_space/2.webp";
 import equationGameImage from "../assets/projects/equation_game/1.webp";
 import cityDefenseImage from "../assets/projects/city_defense/1.webp";
+import mtgCardLookupImage from "../assets/projects/mtg_card_lookup/2.webp";
+import heroHandbookImage from "../assets/projects/hero_handbook/1.webp";
 
 export const projects = [
   {
@@ -40,6 +42,32 @@ export const projects = [
     githubUrl: "https://github.com/aspalvieri/CityDefense",
     image: cityDefenseImage,
     slideFolder: "projects/city_defense",
+    slideCount: 3
+  },
+  {
+    slug: "mtg_card_lookup",
+    title: "MTG Card Lookup",
+    headline: "A website for searching and browsing Magic: The Gathering cards.",
+    summary:
+      "A focused web app for quickly finding Magic: The Gathering cards and reviewing core details in a clean interface. It is built for fast lookup and easy exploration when comparing cards or building deck ideas.",
+    tech: ["JavaScript", "HTML", "CSS"],
+    category: "Web App",
+    githubUrl: "https://github.com/aspalvieri/TCGMachinesChallenge",
+    image: mtgCardLookupImage,
+    slideFolder: "projects/mtg_card_lookup",
+    slideCount: 3
+  },
+  {
+    slug: "hero_handbook",
+    title: "Hero Handbook",
+    headline: "A simple website that demonstrates authentication and protected routes.",
+    summary:
+      "Hero Handbook is a lightweight web app built to showcase user authentication flow and route blocking. It focuses on practical auth behaviors like sign-in state, guarded pages, and redirect handling for unauthorized access.",
+    tech: ["JavaScript", "React"],
+    category: "Web App",
+    githubUrl: "https://github.com/aspalvieri/hero-handbook",
+    image: heroHandbookImage,
+    slideFolder: "projects/hero_handbook",
     slideCount: 3
   }
 ];
