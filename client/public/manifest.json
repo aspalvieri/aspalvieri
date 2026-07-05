@@ -1,6 +1,6 @@
 {
   "short_name": "Alex Spalvieri",
-  "name": "Portfolio Website for Alex Spalvieri",
+  "name": "Alex Spalvieri — Developer of Dawnhold",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,8 +8,8 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#0b1a12",
+  "background_color": "#0b1a12"
 }
