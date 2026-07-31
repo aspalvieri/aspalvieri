@@ -7,7 +7,7 @@ import "./styles/styles.scss";
 
 const EMAIL = "alex@aspalvieri.com";
 const DAWNHOLD_URL = "https://www.playdawnhold.com";
-const STEAM_URL = "https://store.steampowered.com/app/4642990/";
+const STEAM_URL = "https://store.steampowered.com/app/4642990/Dawnhold/?utm_source=playdawnhold&utm_medium=website&utm_campaign=playdawnhold";
 
 const highlights = [
   {
